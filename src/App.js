@@ -1,30 +1,24 @@
 import React from 'react';
-import { Container } from '@material-ui/core';
 import { Paper } from '@material-ui/core';
 import { Grid } from '@material-ui/core';
 import { AppBar } from '@material-ui/core';
-import {  makeStyles } from '@material-ui/core/styles';
 import { Typography } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
+import Stat from './Stat';
+import Character from './Character'
+
 
 const useStyles = makeStyles(theme => ({
-  containerStyle: {
-    backgroundColor: '#d7cec7',
-    height: '400px',
-    marginTop: '40px',
+  container: {
+    display: 'grid',
+    girdGap: theme.spacing(3)
   },
-  paperStyle: {
-    height: '100px',
-    textAlign: 'center'
-  },
-  attrName: {
-    fontSize: '20px',
-    fontWeight: '600'
-  },
-  field: {
-    padding: '10px'
+  gridItem: {
+    height: '100%'
   },
   column: {
-    height: '90vh'
+    height: '100vh',
+    margin: '10px'
   },
   title: {
     marginLeft: '20px',
@@ -35,10 +29,18 @@ const useStyles = makeStyles(theme => ({
     height: '50px'
   },
   back: {
-    backgroundColor: '#565656'
+    alighItems: "center",
+    justify: "center",
+    backgroundColor: '#565656',
   },
-  
+  card: {
+    backgroundColor: '#d7cec7',
+    padding: '10px',
+    marginTop: '2em'
+  }
+
 }))
+
 
 
 export default function App() {
@@ -51,116 +53,35 @@ export default function App() {
         Sheets United
       </Typography>
     </AppBar>
-    <Grid className={classes.base} container spacing={3}>
-      <Grid className={classes.column} item xs={4}>
-        <Container 
-          maxWidth="sm"
-          className={classes.containerStyle}>
-        </Container>
+    <Grid 
+      container
+      justify="center"
+      alightItems="center"
+      style = {{ minHeight: "100vh" }}
+      spacing={0}
+    > 
+      <Grid className={classes.column} xs={3} item>
+
       </Grid>
-      <Grid className={classes.column} item xs={4}>
-        <Grid container>
-          <Grid item xs={12}>
-            <Container 
-              maxWidth="sm"
-              className={classes.containerStyle}>
-            </Container>
-          </Grid>
-          <Grid item xs={12}>
-            <Container
-            maxWidth="sm"
-            className={classes.containerStyle}
-            >
-              <Grid container spacing={3}>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                    <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Dexterity</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                  <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Intelligence</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                  <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Strength</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                  <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Wisdom</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                  <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Constitution</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-                <Grid item xs={6}>
-                  <Paper className={classes.paperStyle}>
-                  <Grid container spacing={1}>
-                      <Grid className={classes.attrName} item xs={12}>Charisma</Grid>
-                      <Grid className={classes.field} item xs={4}>value</Grid>
-                      <Grid className={classes.field} item xs={4}>modifier</Grid>
-                      <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
-                    </Grid>
-                  </Paper>
-                </Grid>
-              </Grid>
-            </Container>
-          </Grid>
+      <Grid className={classes.column} xs={3} item>
+        <Grid container direction="column" >
+          <Paper className={classes.card} >
+            <Grid className={classes.gridItem} xs={12} item>
+              <Character></Character>
+            </Grid>
+          </Paper>
+          <Paper className={classes.card} >
+            <Grid className={classes.gridItem} xs={12} item>
+              <Stat></Stat>
+            </Grid>
+          </Paper>
         </Grid>
       </Grid>
-      <Grid className={classes.column} item xs={4}>
-        <Container 
-          maxWidth="sm"
-          className={classes.containerStyle}>
-        </Container>
+      
+      <Grid className={classes.column} xs={3} item>
+        
       </Grid>
+      
     </Grid>
     
   </div>
