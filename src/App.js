@@ -5,7 +5,8 @@ import { AppBar } from '@material-ui/core';
 import { Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 import Stat from './Stat';
-import Character from './Character'
+import Character from './Character';
+import Proficiency from './Proficiency';
 
 
 const useStyles = makeStyles(theme => ({
@@ -73,6 +74,11 @@ export default function App() {
           <Paper className={classes.card} >
             <Grid className={classes.gridItem} xs={12} item>
               <Stat></Stat>
+            </Grid>
+          </Paper>
+          <Paper className={classes.card} >
+            <Grid className={classes.gridItem} xs={12} item>
+              <Proficiency></Proficiency>
             </Grid>
           </Paper>
         </Grid>
