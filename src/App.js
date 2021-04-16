@@ -62,6 +62,7 @@ export default function App() {
       setAnchorEl(null)
   }
  
+  
 
   return (
   <div className={classes.back}>
@@ -99,6 +100,7 @@ export default function App() {
               <MenuItem onClick={handleMenuClose}>Sorcerer</MenuItem>
               <MenuItem onClick={handleMenuClose}>Warlock</MenuItem>
               <MenuItem onClick={handleMenuClose}>Druid</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Artificer</MenuItem>
           </Menu>
 
         </div>
