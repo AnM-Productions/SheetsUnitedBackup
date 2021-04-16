@@ -1,12 +1,17 @@
-import React from 'react';
-import { Paper } from '@material-ui/core';
-import { Grid } from '@material-ui/core';
-import { AppBar } from '@material-ui/core';
-import { Typography } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-import Stat from './Stat';
-import Character from './Character';
-import Proficiency from './Proficiency';
+import React from 'react'
+import { Paper } from '@material-ui/core'
+import { Grid } from '@material-ui/core'
+import { AppBar } from '@material-ui/core'
+import { Typography } from '@material-ui/core'
+import { Toolbar } from '@material-ui/core'
+import { makeStyles } from '@material-ui/core/styles'
+import { Menu } from '@material-ui/core'
+import { MenuItem } from '@material-ui/core'
+import { Button } from '@material-ui/core'
+import Stat from './Stat'
+import Character from './Character'
+import Proficiency from './Proficiency'
+
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,13 +26,14 @@ const useStyles = makeStyles(theme => ({
     height: '100vh',
     margin: '10px'
   },
-  title: {
-    marginLeft: '20px',
-    marginTop: '10px'
-  },
   titleBar: {
     backgroundColor: '#76323f',
-    height: '50px'
+    height: '60px',
+    paddingBottom: '5px'
+  },
+  toolLeft: {
+    display: 'flex',
+    justifyContent: 'space-between'
   },
   back: {
     alighItems: "center",
@@ -46,13 +52,57 @@ const useStyles = makeStyles(theme => ({
 
 export default function App() {
   const classes = useStyles();
+  const [anchorEl, setAnchorEl] = React.useState(null)
+  
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
+  const handleMenuClose = () => {
+      setAnchorEl(null)
+  }
+ 
 
   return (
   <div className={classes.back}>
     <AppBar className={classes.titleBar} position="static">
-      <Typography variant="h6" className={classes.title}>
-        Sheets United
-      </Typography>
+      <Toolbar className={classes.toolLeft}>
+          <Typography variant="h6" className={classes.title}>
+            Sheets United
+          </Typography>
+        <div>
+          <Button
+              className={classes.classMenu}
+              variant="contained"
+              onClick={handleClick}
+              edge="end"
+          >
+              Choose a Class
+          </Button>
+          <Menu 
+              anchorEl={anchorEl}
+              anchorOrigin={{ vertical: 'bottom', horizontal: 'center' }}
+              keepMounted
+              transformOrigin={{ vertical: 'top', horizontal: 'center' }}
+              open={Boolean(anchorEl)}
+              onClose={handleMenuClose}
+          >
+              <MenuItem onClick={handleMenuClose}>Fighter</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Barbarian</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Paladin</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Ranger</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Rogue</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Monk</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Cleric</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Bard</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Wizard</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Sorcerer</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Warlock</MenuItem>
+              <MenuItem onClick={handleMenuClose}>Druid</MenuItem>
+          </Menu>
+
+        </div>
+        </Toolbar>
     </AppBar>
     <Grid 
       container
