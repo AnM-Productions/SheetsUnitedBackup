@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Paper } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import { AppBar } from '@material-ui/core'
@@ -8,6 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Menu } from '@material-ui/core'
 import { MenuItem } from '@material-ui/core'
 import { Button } from '@material-ui/core'
+import { Fade } from '@material-ui/core'
 import Stat from './Stat'
 import Character from './Character'
 import Proficiency from './Proficiency'
@@ -15,6 +16,9 @@ import Proficiency from './Proficiency'
 
 
 const useStyles = makeStyles(theme => ({
+  page: {
+    position: 'absolute',
+  },
   container: {
     display: 'grid',
     girdGap: theme.spacing(3)
@@ -39,11 +43,15 @@ const useStyles = makeStyles(theme => ({
     alighItems: "center",
     justify: "center",
     backgroundColor: '#565656',
+    minHeight: '100vh'
   },
   card: {
     backgroundColor: '#d7cec7',
     padding: '10px',
     marginTop: '2em'
+  },
+  classMenu: {
+    marginLeft: '10px'
   }
 
 }))
@@ -52,7 +60,8 @@ const useStyles = makeStyles(theme => ({
 
 export default function App() {
   const classes = useStyles();
-  const [anchorEl, setAnchorEl] = React.useState(null)
+  const [anchorEl, setAnchorEl] = useState(null)
+  const [details, setDetails] = useState(false)
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -60,6 +69,10 @@ export default function App() {
 
   const handleMenuClose = () => {
       setAnchorEl(null)
+  }
+
+  const swapDetails = () =>{
+    setDetails((prev) => !prev)
   }
  
   
@@ -71,7 +84,13 @@ export default function App() {
           <Typography variant="h6" className={classes.title}>
             Sheets United
           </Typography>
-        <div>
+        <div class={classes.toolRight}>
+          <Button
+            variant="contained"
+            onClick={swapDetails}
+          >
+            Get Details
+          </Button>
           <Button
               className={classes.classMenu}
               variant="contained"
@@ -106,41 +125,76 @@ export default function App() {
         </div>
         </Toolbar>
     </AppBar>
-    <Grid 
-      container
-      justify="center"
-      alightItems="center"
-      style = {{ minHeight: "100vh" }}
-      spacing={0}
-    > 
-      <Grid className={classes.column} xs={3} item>
+    <Fade in={!details}>
+      <Grid
+        className={classes.page}
+        container
+        justify="center"
+        alightItems="center"
+        spacing={0}
+      > 
+          <Grid className={classes.column} xs={3} item>
 
-      </Grid>
-      <Grid className={classes.column} xs={3} item>
-        <Grid container direction="column" >
-          <Paper className={classes.card} >
-            <Grid className={classes.gridItem} xs={12} item>
-              <Character></Character>
+          </Grid>
+          <Grid className={classes.column} xs={3} item>
+            <Grid container direction="column" >
+              <Paper className={classes.card} >
+                <Grid className={classes.gridItem} xs={12} item>
+                  <Character></Character>
+                </Grid>
+              </Paper>
+              <Paper className={classes.card} >
+                <Grid className={classes.gridItem} xs={12} item>
+                  <Stat></Stat>
+                </Grid>
+              </Paper>
+              <Paper className={classes.card} >
+                <Grid className={classes.gridItem} xs={12} item>
+                  <Proficiency></Proficiency>
+                </Grid>
+              </Paper>
             </Grid>
-          </Paper>
-          <Paper className={classes.card} >
-            <Grid className={classes.gridItem} xs={12} item>
-              <Stat></Stat>
-            </Grid>
-          </Paper>
-          <Paper className={classes.card} >
-            <Grid className={classes.gridItem} xs={12} item>
-              <Proficiency></Proficiency>
-            </Grid>
-          </Paper>
-        </Grid>
-      </Grid>
-      
-      <Grid className={classes.column} xs={3} item>
+          </Grid>
+          
+          <Grid className={classes.column} xs={3} item>
+            
+          </Grid>
         
       </Grid>
-      
-    </Grid>
+    </Fade>
+    <Fade in={details}>
+      <Grid
+        className={classes.page}
+        container
+        justify="center"
+        alightItems="center"
+        spacing={0}
+      > 
+          <Grid className={classes.column} xs={3} item>
+
+          </Grid>
+          <Grid className={classes.column} xs={3} item>
+            <Grid container direction="column" >
+              <Paper className={classes.card} >
+                <Grid className={classes.gridItem} xs={12} item>
+                  <Character></Character>
+                </Grid>
+              </Paper>
+              <Paper className={classes.card} >
+                <Grid className={classes.gridItem} xs={12} item>
+                  <Stat></Stat>
+                </Grid>
+              </Paper>
+            </Grid>
+          </Grid>
+          
+          <Grid className={classes.column} xs={3} item>
+            
+          </Grid>
+        
+      </Grid>
+
+    </Fade>
     
   </div>
 );

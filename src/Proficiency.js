@@ -9,7 +9,7 @@ const styles = {
   },
   paperStyle: {
     paddingLeft: '5px',
-    margin: '10px',
+    margin: '8px',
     
   },
   attrName: {
