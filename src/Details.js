@@ -5,7 +5,6 @@ import { Dialog, TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
 import Stat from './Stat'
 import CoreStats from './CoreStats'
-import Proficiency from './Proficiency'
 
 
 
@@ -49,7 +48,7 @@ const styles = {
 
 
 
-function Character(props){
+function Details(props){
     const { classes } = props
     const [open, setOpen] = useState(false)
 
@@ -60,7 +59,6 @@ function Character(props){
       const handleClickOpen = () => {
         setOpen(true)
       }
-
 
     return(
             <Grid
@@ -86,11 +84,6 @@ function Character(props){
                     <Stat handleClickOpen={handleClickOpen}></Stat>
                     </Grid>
                 </Paper>
-                <Paper className={classes.card} >
-                    <Grid className={classes.gridItem} xs={12} item>
-                    <Proficiency></Proficiency>
-                    </Grid>
-                </Paper>
                 </Grid>
             </Grid>
             
@@ -108,7 +101,6 @@ function Character(props){
                     <Grid className={classes.field} item xs={4}><TextField label="Proficiency"></TextField></Grid>
                 </Grid>
             </Dialog>
-            
         </Grid>
         
     )
@@ -117,4 +109,4 @@ function Character(props){
 
 
 
-export default withStyles(styles)(Character)
+export default withStyles(styles)(Details)

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Paper } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import { AppBar } from '@material-ui/core'
 import { Typography } from '@material-ui/core'
@@ -10,10 +9,10 @@ import { MenuItem } from '@material-ui/core'
 import { Button, IconButton } from '@material-ui/core'
 import { ArrowBack, LibraryBooks } from '@material-ui/icons'
 import { Fade } from '@material-ui/core'
-import Stat from './Stat'
 import Character from './Character'
-import Proficiency from './Proficiency'
 import Login from './Login'
+import Details from './Details'
+
 
 
 
@@ -119,7 +118,6 @@ export default function App() {
               variant="contained"
               onClick={handleClick}
               edge="end"
-              color="white"
           >
               Choose a Class
           </Button>
@@ -151,71 +149,24 @@ export default function App() {
     </AppBar>
     <Fade in={!details & !login}>
       <Grid
-        className={classes.page}
-        container
-        justify="center"
-        alightItems="center"
-        spacing={0}
-      > 
-          <Grid className={classes.column} xs={3} item>
-
-          </Grid>
-          <Grid className={classes.column} xs={3} item>
-            <Grid container direction="column" >
-              <Paper className={classes.card} >
-                <Grid className={classes.gridItem} xs={12} item>
-                  <Character></Character>
-                </Grid>
-              </Paper>
-              <Paper className={classes.card} >
-                <Grid className={classes.gridItem} xs={12} item>
-                  <Stat></Stat>
-                </Grid>
-              </Paper>
-              <Paper className={classes.card} >
-                <Grid className={classes.gridItem} xs={12} item>
-                  <Proficiency></Proficiency>
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-          
-          <Grid className={classes.column} xs={3} item>
-            
-          </Grid>
-        
+            className={classes.page}
+            container
+            justify="center"
+            alightItems="center"
+            spacing={0}
+        > 
+        <Character></Character>
       </Grid>
     </Fade>
     <Fade in={details & !login}>
       <Grid
-        className={classes.page}
-        container
-        justify="center"
-        alightItems="center"
-        spacing={0}
-      > 
-          <Grid className={classes.column} xs={3} item>
-
-          </Grid>
-          <Grid className={classes.column} xs={3} item>
-            <Grid container direction="column" >
-              <Paper className={classes.card} >
-                <Grid className={classes.gridItem} xs={12} item>
-                  <Character></Character>
-                </Grid>
-              </Paper>
-              <Paper className={classes.card} >
-                <Grid className={classes.gridItem} xs={12} item>
-                  <Stat></Stat>
-                </Grid>
-              </Paper>
-            </Grid>
-          </Grid>
-          
-          <Grid className={classes.column} xs={3} item>
-            
-          </Grid>
-        
+            className={classes.page}
+            container
+            justify="center"
+            alightItems="center"
+            spacing={0}
+        > 
+        <Details></Details>
       </Grid>
     </Fade>
     <Fade in={login}>
