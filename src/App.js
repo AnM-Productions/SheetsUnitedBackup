@@ -8,7 +8,7 @@ import { makeStyles } from '@material-ui/core/styles'
 import { Menu } from '@material-ui/core'
 import { MenuItem } from '@material-ui/core'
 import { Button, IconButton } from '@material-ui/core'
-import { ArrowBack } from '@material-ui/icons'
+import { ArrowBack, LibraryBooks } from '@material-ui/icons'
 import { Fade } from '@material-ui/core'
 import Stat from './Stat'
 import Character from './Character'
@@ -108,17 +108,18 @@ export default function App() {
           </Typography>
         </div>
         <div class={classes.toolRight}>
-          <Button
+          <IconButton
             variant="contained"
             onClick={swapDetails}
           >
-            Get Details
-          </Button>
+            <LibraryBooks/>
+          </IconButton>
           <Button
               className={classes.classMenu}
               variant="contained"
               onClick={handleClick}
               edge="end"
+              color="white"
           >
               Choose a Class
           </Button>

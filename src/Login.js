@@ -13,9 +13,16 @@ const styles = {
         width: '400px'
     },
     loginSubmit: {
-        width: '80%',
+        width: '40%',
         backgroundColor: '#4285F4',
         color: 'white',
+        margin: '5px'
+    },
+    loginGuest: {
+        width: '40%',
+        backgroundColor: '#808080',
+        color: 'white',
+        margin: '5px'
     },
     loginField: {
         width: '80%',
@@ -47,6 +54,13 @@ function Login (props){
                 className={classes.loginSubmit}
             >
                 Enter
+            </Button>
+            <Button
+                variant="contained"
+                onClick={props.fadeLogin}
+                className={classes.loginGuest}
+            >
+                Guest
             </Button>
         </Paper>
 
