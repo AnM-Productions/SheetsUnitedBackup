@@ -7,7 +7,8 @@ import { Toolbar } from '@material-ui/core'
 import { makeStyles } from '@material-ui/core/styles'
 import { Menu } from '@material-ui/core'
 import { MenuItem } from '@material-ui/core'
-import { Button } from '@material-ui/core'
+import { Button, IconButton } from '@material-ui/core'
+import { ArrowBack } from '@material-ui/icons'
 import { Fade } from '@material-ui/core'
 import Stat from './Stat'
 import Character from './Character'
@@ -42,6 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
   toolLeft: {
     display: 'flex',
+    alignItems: 'center'
   },
   back: {
     alighItems: "center",
@@ -94,14 +96,14 @@ export default function App() {
     <AppBar className={classes.titleBar} position="static">
       <Toolbar className={classes.tool}>
         <div className={classes.toolLeft}>
-          <Button
+          <IconButton
             variant="contained"
             onClick={fadeLogin}
             className={classes.loginButton}
           >
-            Login
-          </Button>
-          <Typography variant="h6" className={classes.title}>
+            <ArrowBack/>
+          </IconButton>
+          <Typography variant="h4" className={classes.title}>
             Sheets United
           </Typography>
         </div>

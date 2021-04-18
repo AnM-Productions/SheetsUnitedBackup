@@ -1,17 +1,25 @@
 import React from 'react'
-import { Paper, Typography, withStyles, Button } from '@material-ui/core'
+import { Paper, Typography, withStyles, Button, TextField } from '@material-ui/core'
 
 
 
 const styles = {
     loginPage: {
-        marginTop: '2em',
-        padding: '15px'
+        marginTop: '6em',
+        padding: '15px',
+        display: 'flex',
+        justifyContent: 'center',
+        flexWrap: 'wrap',
+        width: '400px'
     },
     loginSubmit: {
-        width: '100%',
+        width: '80%',
         backgroundColor: '#4285F4',
-        color: 'white'
+        color: 'white',
+    },
+    loginField: {
+        width: '80%',
+        marginBottom: '2em',
     }
 
 }
@@ -28,9 +36,11 @@ function Login (props){
             className={classes.loginPage}
 
         >
-            <Typography variant="h4">
+            <Typography variant="h5">
                 Please enter your credentials
             </Typography>
+            <TextField label="username" className={classes.loginField}></TextField>
+            <TextField label="password" className={classes.loginField}></TextField>
             <Button
                 variant="contained"
                 onClick={props.fadeLogin}
