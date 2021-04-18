@@ -12,6 +12,7 @@ import { Fade } from '@material-ui/core'
 import Stat from './Stat'
 import Character from './Character'
 import Proficiency from './Proficiency'
+import Login from './Login'
 
 
 
@@ -35,9 +36,12 @@ const useStyles = makeStyles(theme => ({
     height: '60px',
     paddingBottom: '5px'
   },
-  toolLeft: {
+  tool: {
     display: 'flex',
     justifyContent: 'space-between'
+  },
+  toolLeft: {
+    display: 'flex',
   },
   back: {
     alighItems: "center",
@@ -51,7 +55,10 @@ const useStyles = makeStyles(theme => ({
     marginTop: '2em'
   },
   classMenu: {
-    marginLeft: '10px'
+    marginLeft: '16px'
+  },
+  loginButton: {
+    marginRight: '16px'
   }
 
 }))
@@ -62,6 +69,7 @@ export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null)
   const [details, setDetails] = useState(false)
+  const [login, setLogin] = useState(true)
   
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget)
@@ -74,16 +82,29 @@ export default function App() {
   const swapDetails = () =>{
     setDetails((prev) => !prev)
   }
+
+  const fadeLogin = () =>{
+    setLogin((prev) => !prev)
+  }
  
   
 
   return (
   <div className={classes.back}>
     <AppBar className={classes.titleBar} position="static">
-      <Toolbar className={classes.toolLeft}>
+      <Toolbar className={classes.tool}>
+        <div className={classes.toolLeft}>
+          <Button
+            variant="contained"
+            onClick={fadeLogin}
+            className={classes.loginButton}
+          >
+            Login
+          </Button>
           <Typography variant="h6" className={classes.title}>
             Sheets United
           </Typography>
+        </div>
         <div class={classes.toolRight}>
           <Button
             variant="contained"
@@ -123,9 +144,9 @@ export default function App() {
           </Menu>
 
         </div>
-        </Toolbar>
+      </Toolbar>
     </AppBar>
-    <Fade in={!details}>
+    <Fade in={!details & !login}>
       <Grid
         className={classes.page}
         container
@@ -162,7 +183,7 @@ export default function App() {
         
       </Grid>
     </Fade>
-    <Fade in={details}>
+    <Fade in={details & !login}>
       <Grid
         className={classes.page}
         container
@@ -193,7 +214,17 @@ export default function App() {
           </Grid>
         
       </Grid>
-
+    </Fade>
+    <Fade in={login}>
+      <Grid
+        className={classes.page}
+        container
+        justify="center"
+        alightItems="center"
+        spacing={0}
+      >
+        <Login fadeLogin={fadeLogin}></Login>
+      </Grid>
     </Fade>
     
   </div>
