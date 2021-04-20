@@ -6,6 +6,7 @@ import { withStyles } from '@material-ui/core/styles'
 import Stat from './Stat'
 import CoreStats from './CoreStats'
 import Proficiency from './Proficiency'
+import InfoBar from './InfoBar'
 
 
 
@@ -70,7 +71,6 @@ function Character(props){
             alightItems="center"
             spacing={0}
         > 
-            
             <Grid className={classes.column} xs={3} item>
 
             </Grid>
@@ -78,17 +78,22 @@ function Character(props){
                 <Grid container direction="column" >
                 <Paper className={classes.card} >
                     <Grid className={classes.gridItem} xs={12} item>
-                    <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
+                        <InfoBar></InfoBar>
                     </Grid>
                 </Paper>
                 <Paper className={classes.card} >
                     <Grid className={classes.gridItem} xs={12} item>
-                    <Stat handleClickOpen={handleClickOpen}></Stat>
+                        <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
                     </Grid>
                 </Paper>
                 <Paper className={classes.card} >
                     <Grid className={classes.gridItem} xs={12} item>
-                    <Proficiency></Proficiency>
+                        <Stat handleClickOpen={handleClickOpen}></Stat>
+                    </Grid>
+                </Paper>
+                <Paper className={classes.card} >
+                    <Grid className={classes.gridItem} xs={12} item>
+                        <Proficiency></Proficiency>
                     </Grid>
                 </Paper>
                 </Grid>
@@ -99,7 +104,6 @@ function Character(props){
             </Grid>
             <Dialog open={open} onClose={handleClose}>        
                 <Grid container className={classes.dialogContainer} spacing={0}>
-                    <Grid className={classes.field} item xs={12}><TextField label="Character Name"></TextField></Grid>
                     <Grid className={classes.field} item xs={4}><TextField label="Health"></TextField></Grid>
                     <Grid className={classes.field} item xs={4}><TextField label="AC"></TextField></Grid>
                     <Grid className={classes.field} item xs={4}><TextField label="Hit Die"></TextField></Grid>
