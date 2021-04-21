@@ -36,6 +36,14 @@ const styles = {
 function CoreStats(props){
     const { classes } = props;
     const [open, setOpen] = useState(false)
+    const [ values, setValues ] = useState({
+        health: "0",
+        ac: "0",
+        hit_die: "0",
+        initiative: "0",
+        movement: "0",
+        proficiency: "0",
+      })
     
 
 
@@ -45,6 +53,10 @@ function CoreStats(props){
 
     const handleClickOpen = () => {
       setOpen(true)
+    }
+
+    const handleChange = (props) => (event) => {
+        setValues({ ...values, [props]: event.target.value})
     }
 
 
@@ -57,7 +69,7 @@ function CoreStats(props){
                             Health
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                            {values.health}
                         </Box>
                     </Typography>
                 </Paper>
@@ -69,7 +81,7 @@ function CoreStats(props){
                             AC
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                        {values.ac}
                         </Box>
                     </Typography>
                 </Paper>
@@ -81,7 +93,7 @@ function CoreStats(props){
                             Hit Die
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                        {values.hit_die}
                         </Box>
                     </Typography>
                 </Paper>
@@ -93,7 +105,7 @@ function CoreStats(props){
                             Initiative
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                        {values.initiative}
                         </Box>
                     </Typography>
                 </Paper>
@@ -105,7 +117,7 @@ function CoreStats(props){
                             Movement
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                        {values.movement}
                         </Box>
                     </Typography>
                 </Paper>
@@ -117,7 +129,7 @@ function CoreStats(props){
                             Proficiency
                         </Box>
                         <Box fontWeight={600} lineHeight={2}>
-                            0
+                        {values.proficiency}
                         </Box>
                     </Typography>
                 </Paper>
@@ -125,12 +137,12 @@ function CoreStats(props){
             <Dialog open={open} onClose={handleClose}>
                 <DialogTitle className={classes.title}>Set Character Details</DialogTitle>  
                 <Grid container className={classes.dialogContainer} spacing={0}>
-                    <Grid className={classes.field} item xs={4}><TextField label="Health"></TextField></Grid>
-                    <Grid className={classes.field} item xs={4}><TextField label="AC"></TextField></Grid>
-                    <Grid className={classes.field} item xs={4}><TextField label="Hit Die"></TextField></Grid>
-                    <Grid className={classes.field} item xs={4}><TextField label="Initiative"></TextField></Grid>
-                    <Grid className={classes.field} item xs={4}><TextField label="Movement"></TextField></Grid>
-                    <Grid className={classes.field} item xs={4}><TextField label="Proficiency"></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="Health" onChange={handleChange('health')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="AC" onChange={handleChange('ac')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="Hit Die" onChange={handleChange('hit_die')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="Initiative" onChange={handleChange('initiative')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="Movement" onChange={handleChange('movement')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={4}><TextField label="Proficiency" onChange={handleChange('proficiency')}></TextField></Grid>
                 </Grid>
             </Dialog>
         </Grid>

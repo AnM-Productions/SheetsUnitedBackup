@@ -36,6 +36,12 @@ const styles = {
 function InfoBar(props){
     const { classes } = props;
     const [open, setOpen] = useState(false)
+    const [ info, setInfo ] = useState({
+        name: "Name",
+        race: "Race",
+        class: "Class",
+        level: "0",
+      })
     
 
 
@@ -47,13 +53,17 @@ function InfoBar(props){
       setOpen(true)
     }
 
+    const handleChange = (props) => (event) =>{
+        setInfo({ ...info, [props]: event.target.value})
+    }
+
     return (
         <Grid container spacing={2}>
             <Grid item xs={3}>
                 <Paper onClick={handleClickOpen} className={classes.paperStyle}>
                     <Typography>
                         <Box fontSize={24} fontWeight={600} lineHeight={3}>
-                            Name
+                            {info.name}
                         </Box>
                     </Typography>
                 </Paper>
@@ -62,7 +72,7 @@ function InfoBar(props){
                 <Paper onClick={handleClickOpen} className={classes.paperStyle}>
                     <Typography>
                         <Box fontSize={24} fontWeight={600} lineHeight={3}>
-                            Race
+                        {info.race}
                         </Box>
                     </Typography>
                 </Paper>
@@ -71,7 +81,7 @@ function InfoBar(props){
                 <Paper onClick={handleClickOpen} className={classes.paperStyle}>
                     <Typography>
                         <Box fontSize={24} fontWeight={600} lineHeight={3}>
-                            Class
+                        {info.class}
                         </Box>
                     </Typography>
                 </Paper>
@@ -80,7 +90,7 @@ function InfoBar(props){
                 <Paper onClick={handleClickOpen} className={classes.paperStyle}>
                     <Typography>
                         <Box fontSize={24} fontWeight={600} lineHeight={3}>
-                            Level 1
+                            Level {info.level}
                         </Box>
                     </Typography>
                 </Paper>
@@ -88,10 +98,10 @@ function InfoBar(props){
             <Dialog open={open} onClose={handleClose}>
             <DialogTitle className={classes.title}>Set Character Info</DialogTitle>      
                 <Grid container className={classes.dialogContainer} spacing={0}>
-                    <Grid className={classes.field} item xs={6}><TextField label="Name"></TextField></Grid>
-                    <Grid className={classes.field} item xs={6}><TextField label="Race"></TextField></Grid>
-                    <Grid className={classes.field} item xs={6}><TextField label="Class"></TextField></Grid>
-                    <Grid className={classes.field} item xs={6}><TextField label="Level"></TextField></Grid>
+                    <Grid className={classes.field} item xs={6}><TextField label="Name" onChange={handleChange('name')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={6}><TextField label="Race" onChange={handleChange('race')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={6}><TextField label="Class" onChange={handleChange('class')}></TextField></Grid>
+                    <Grid className={classes.field} item xs={6}><TextField label="Level" onChange={handleChange('level')}></TextField></Grid>
                 </Grid>
             </Dialog>
         </Grid>

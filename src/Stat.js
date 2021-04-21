@@ -34,6 +34,14 @@ const styles = {
 function Stat(props) {
     const { classes } = props;
     const [open, setOpen] = useState(false)
+    const [ stats, setStats ] = useState({
+      dexterity: "0",
+      intelligence: "0",
+      strength: "0",
+      wisdom: "0",
+      constitution: "0",
+      charisma: "0",
+    })
     
 
 
@@ -44,6 +52,11 @@ function Stat(props) {
     const handleClickOpen = () => {
       setOpen(true)
     }
+
+    const handleChange = (props) => (event) => {
+      setStats({ ...stats, [props]: event.target.value})
+    }
+
 
 
     return (
@@ -58,7 +71,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.dexterity}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>
@@ -66,12 +79,12 @@ function Stat(props) {
                   <Dialog open={open} onClose={handleClose}>
                     <DialogTitle className={classes.title}>Set Character Stats</DialogTitle>
                     <Grid container className={classes.dialogContainer} spacing={0}>
-                      <Grid className={classes.field} item xs={6}><TextField label="Dexterity"></TextField></Grid>
-                      <Grid className={classes.field} item xs={6}><TextField label="Intelligence"></TextField></Grid>
-                      <Grid className={classes.field} item xs={6}><TextField label="Strength"></TextField></Grid>
-                      <Grid className={classes.field} item xs={6}><TextField label="Wisdom"></TextField></Grid>
-                      <Grid className={classes.field} item xs={6}><TextField label="Constitution"></TextField></Grid>
-                      <Grid className={classes.field} item xs={6}><TextField label="Charisma"></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Dexterity" onChange={handleChange('dexterity')}></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Intelligence" onChange={handleChange('intelligence')}></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Strength" onChange={handleChange('strength')}></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Wisdom" onChange={handleChange('wisdom')}></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Constitution" onChange={handleChange('constitution')}></TextField></Grid>
+                      <Grid className={classes.field} item xs={6}><TextField label="Charisma" onChange={handleChange('charisma')}></TextField></Grid>
                     </Grid>
                   </Dialog>
                 </Grid>
@@ -82,7 +95,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.intelligence}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>
@@ -95,7 +108,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.strength}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>
@@ -108,7 +121,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.wisdom}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>
@@ -121,7 +134,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.constitution}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>
@@ -134,7 +147,7 @@ function Stat(props) {
                       <Grid className={classes.field} item xs={4}>value</Grid>
                       <Grid className={classes.field} item xs={4}>modifier</Grid>
                       <Grid className={classes.field} item xs={4}>save</Grid>
-                      <Grid className={classes.field} item xs={4}>0</Grid>
+                      <Grid className={classes.field} item xs={4}>{stats.charisma}</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                       <Grid className={classes.field} item xs={4}>0</Grid>
                     </Grid>

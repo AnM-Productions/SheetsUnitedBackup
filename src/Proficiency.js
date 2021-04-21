@@ -178,7 +178,7 @@ function Proficiency(props) {
               </Grid>
             </Grid>
           </Paper>
-        </Grid>
+        </Grid>  
       </Grid>
     </Grid>
   );
