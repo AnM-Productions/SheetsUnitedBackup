@@ -3,8 +3,7 @@ import { Paper } from '@material-ui/core'
 import { Grid } from '@material-ui/core'
 import { Dialog, TextField } from '@material-ui/core'
 import { withStyles } from '@material-ui/core/styles'
-import Stat from './Stat'
-import CoreStats from './CoreStats'
+import Notes from './Notes'
 
 
 
@@ -55,10 +54,12 @@ function Details(props){
     const handleClose = () => {
         setOpen(false)
       }
-  
+      
+      /*
       const handleClickOpen = () => {
         setOpen(true)
       }
+      */
 
     return(
             <Grid
@@ -74,16 +75,11 @@ function Details(props){
             </Grid>
             <Grid className={classes.column} xs={3} item>
                 <Grid container direction="column" >
-                <Paper className={classes.card} >
-                    <Grid className={classes.gridItem} xs={12} item>
-                    <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
-                    </Grid>
-                </Paper>
-                <Paper className={classes.card} >
-                    <Grid className={classes.gridItem} xs={12} item>
-                    <Stat handleClickOpen={handleClickOpen}></Stat>
-                    </Grid>
-                </Paper>
+                    <Paper className={classes.card}>
+                        <Grid className={classes.gridItem} xs={12} item>
+                            <Notes></Notes>
+                        </Grid>
+                    </Paper>
                 </Grid>
             </Grid>
             

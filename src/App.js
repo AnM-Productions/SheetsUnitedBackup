@@ -12,7 +12,6 @@ import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
 import Details from "./Details";
-import Notes from "./Notes";
 
 const useStyles = makeStyles((theme) => ({
   page: {

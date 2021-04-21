@@ -7,7 +7,6 @@ import Stat from "./Stat";
 import CoreStats from "./CoreStats";
 import Proficiency from "./Proficiency";
 import InfoBar from "./InfoBar";
-import Notes from "./Notes";
 
 const styles = {
   paperStyle: {
@@ -90,11 +89,7 @@ function Character(props) {
       </Grid>
 
       <Grid className={classes.column} xs={3} item>
-        <Paper className={classes.card}>
-          <Grid className={classes.gridItem} xs={12} item>
-            <Notes></Notes>
-          </Grid>
-        </Paper>
+        
       </Grid>
       <Dialog open={open} onClose={handleClose}>
         <Grid container className={classes.dialogContainer} spacing={0}>
