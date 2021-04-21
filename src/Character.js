@@ -9,13 +9,6 @@ import Proficiency from "./Proficiency";
 import InfoBar from "./InfoBar";
 
 const styles = {
-  paperStyle: {
-    height: "100px",
-    textAlign: "center",
-    "&:hover": {
-      opacity: "0.75",
-    },
-  },
   dialogContainer: {
     display: "flex",
     justifyContent: "center",
