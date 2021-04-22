@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import { Paper } from "@material-ui/core";
-import { Grid, Box } from "@material-ui/core";
+import { Grid, Box, Dialog, DialogTitle } from "@material-ui/core";
 import PropTypes from "prop-types";
-import { Tabs, Tab, TextField } from "@material-ui/core";
+import {
+  Tabs,
+  Tab,
+  TextField,
+  Typography,
+  Button,
+  List,
+  ListItem,
+  ListItemText,
+} from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const styles = {
   paperStyle: {
     height: "400px",
     textAlign: "left",
-    "&:hover": {
-      opacity: "0.75",
-    },
     margins: "0px 3px",
     padding: "5px",
   },
@@ -58,12 +65,49 @@ function a11yProps(index) {
   };
 }
 
+async function getWeapons() {
+  // need to check for status.
+  // from api to list that we can display
+  // in dialog, list of all clubs,
+  // returns to "equipment window"
+  // equipment window has a list/display of items
+  // this eventually gets initialized from db
+  let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon";
+  const response = await axios.get(url);
+  console.log(response);
+  return (
+    <List>
+      {[1, 2, 3, 4].map((i) => (
+        <ListItem key={`weapon-${i}`}>
+          <ListItemText primary={`${i}`} />
+        </ListItem>
+      ))}
+    </List>
+  );
+}
+
+// function getEquipment( ) {
+//   // axios convert
+//   let url = 'https://www.dnd5eapi.co/api/equipment/club'
+//   // get list of api indices
+
+//   //get api data from indices
+// }
+
 function Notes(props) {
   const { classes } = props;
   //   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
+  const [dialogOpen, setDialogOpen] = useState(false);
   const handleChange = (event, newValue) => {
     setPage(newValue);
+  };
+  const handleDialogOpen = () => {
+    setDialogOpen(true);
+    getWeapons();
+  };
+  const handleDialogClose = () => {
+    setDialogOpen(false);
   };
   //   const handleClickOpen = () => {
   //     setOpen(true);
@@ -79,6 +123,16 @@ function Notes(props) {
             <Tab label="Spells" {...a11yProps(2)} />
             <Tab label="Notes" {...a11yProps(3)} />
           </Tabs>
+          <TabPanel value={page} index={0}></TabPanel>
+          <TabPanel value={page} index={1}>
+            <Typography variant="h2"> Tab 2</Typography>
+            <Button variant="contained" onClick={handleDialogOpen}>
+              Add Equipment
+            </Button>
+          </TabPanel>
+          <TabPanel value={page} index={2}>
+            <Typography variant="h2"> tab 3 </Typography>
+          </TabPanel>
           <TabPanel value={page} index={3}>
             <TextField
               className={classes.textAreaStyle}
@@ -94,6 +148,10 @@ function Notes(props) {
         </Paper>
       </Grid>
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
+      <Dialog open={dialogOpen} onClose={handleDialogClose}>
+        <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
+        {getWeapons}
+      </Dialog>
     </Grid>
   );
 }
