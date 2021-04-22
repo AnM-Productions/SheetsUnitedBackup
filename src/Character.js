@@ -25,6 +25,7 @@ const styles = {
     backgroundColor: "#d7cec7",
     padding: "10px",
     marginTop: "2em",
+    minWidth: '440px'
   },
   column: {
     height: "100vh",
