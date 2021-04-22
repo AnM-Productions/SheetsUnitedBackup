@@ -53,7 +53,7 @@ function Character(props) {
       container
       justify="center"
       alightItems="center"
-      spacing={1}
+      spacing={0}
     >
       <Grid className={classes.column} xs={3} item></Grid>
       <Grid className={classes.column} xs={3} item>

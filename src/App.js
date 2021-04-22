@@ -42,15 +42,18 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   back: {
+    backgroundColor: "#565656",
     alighItems: "center",
     justify: "center",
-    backgroundColor: "#565656",
-    minHeight: "100vh",
+    flexWrap: "nowrap",
+    height: '1420px',
+    margin: '0px',
   },
   card: {
     backgroundColor: "#d7cec7",
     padding: "10px",
     marginTop: "2em",
+    flexWrap: "nowrap"
   },
   classMenu: {
     marginLeft: "16px",
@@ -108,7 +111,7 @@ export default function App() {
               onClick={handleClick}
               edge="end"
             >
-              Choose a Class
+              Choose a Theme
             </Button>
             <Menu
               anchorEl={anchorEl}
