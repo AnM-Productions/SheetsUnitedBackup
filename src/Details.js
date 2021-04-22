@@ -73,7 +73,7 @@ function Details(props){
             <Grid className={classes.column} xs={3} item>
 
             </Grid>
-            <Grid className={classes.column} xs={3} item>
+            <Grid className={classes.column} xs={4} item>
                 <Grid container direction="column" >
                     <Paper className={classes.card}>
                         <Grid className={classes.gridItem} xs={12} item>
