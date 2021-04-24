@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Paper } from "@material-ui/core";
 import { Grid, Box, Dialog, DialogTitle } from "@material-ui/core";
 import PropTypes from "prop-types";
@@ -64,20 +64,56 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-
-async function getWeapons() {
-  // need to check for status.
-  // from api to list that we can display
-  // in dialog, list of all clubs,
-  // returns to "equipment window"
-  // equipment window has a list/display of items
-  // this eventually gets initialized from db
-  let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon";
-  const response = await axios.get(url);
-  console.log(response);
+// async function getWeapons() {
+//   // need to check for status.
+//   // from api to list that we can display
+//   // in dialog, list of all clubs,
+//   // returns to "equipment window"
+//   // equipment window has a list/display of items
+//   // this eventually gets initialized from db
+//   let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon";
+//   const response = await axios.get(url);
+//   console.log(response);
+//   return (
+//     <List>
+//       {[1, 2, 3, 4].map((i) => (
+//         <ListItem key={`weapon-${i}`}>
+//           <ListItemText primary={`${i}`} />
+//         </ListItem>
+//       ))}
+//     </List>
+//   );
+// }
+function FetchData(props) {
+  const [query, setQuery] = useState([]);
+  const [url, setUrl] = useState("");
+  if (props.type === "weapons") {
+    setUrl("https://www.dnd5eapi.co/api/equipment-categories/weapon/");
+  } else if (props.type === "equipment") {
+    setUrl("https://www.dnd5eapi.co/api/equipment/");
+  } /* spells */ else {
+    setUrl("https://www.dnd5eapi.co/api/spells/");
+  }
+  console.log(url);
+  useEffect(() => {
+    async function getWeapons() {
+      // need to check for status.
+      // from api to list that we can display
+      // in dialog, list of all clubs,
+      // returns to "equipment window"
+      // equipment window has a list/display of items
+      // this eventually gets initialized from db
+      // let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon/";
+      const response = await axios.get(url);
+      console.log("useEffect" + response);
+      setQuery(response.data);
+    }
+    console.log(url);
+    getWeapons();
+  }, [url]);
   return (
     <List>
-      {[1, 2, 3, 4].map((i) => (
+      {query.results.map((i) => (
         <ListItem key={`weapon-${i}`}>
           <ListItemText primary={`${i}`} />
         </ListItem>
@@ -85,7 +121,6 @@ async function getWeapons() {
     </List>
   );
 }
-
 // function getEquipment( ) {
 //   // axios convert
 //   let url = 'https://www.dnd5eapi.co/api/equipment/club'
@@ -99,20 +134,19 @@ function Notes(props) {
   //   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
   const [dialogOpen, setDialogOpen] = useState(false);
+
   const handleChange = (event, newValue) => {
     setPage(newValue);
   };
   const handleDialogOpen = () => {
     setDialogOpen(true);
-    getWeapons();
+    // fetchData('weapons');
   };
   const handleDialogClose = () => {
     setDialogOpen(false);
   };
-  //   const handleClickOpen = () => {
-  //     setOpen(true);
-  //   };
 
+  /* Here is where we fetch API data for displaying lists of equip/weapons/etc */
   return (
     <Grid container spacing={0}>
       <Grid item xs={12}>
@@ -150,7 +184,7 @@ function Notes(props) {
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
       <Dialog open={dialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
-        {getWeapons}
+        <FetchData type="weapons" />
       </Dialog>
     </Grid>
   );
