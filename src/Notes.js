@@ -85,16 +85,16 @@ function a11yProps(index) {
 //   );
 // }
 function FetchData(props) {
-  const [query, setQuery] = useState([]);
-  const [url, setUrl] = useState("");
-  if (props.type === "weapons") {
-    setUrl("https://www.dnd5eapi.co/api/equipment-categories/weapon/");
-  } else if (props.type === "equipment") {
-    setUrl("https://www.dnd5eapi.co/api/equipment/");
-  } /* spells */ else {
-    setUrl("https://www.dnd5eapi.co/api/spells/");
-  }
-  console.log(url);
+  let [query, setQuery] = useState([]);
+  // const [url, setUrl] = useState(null);
+  // if (props.type === "weapons") {
+  //   setUrl("https://www.dnd5eapi.co/api/equipment-categories/weapon/");
+  // } else if (props.type === "equipment") {
+  //   setUrl("https://www.dnd5eapi.co/api/equipment/");
+  // } /* spells */ else {
+  //   setUrl("https://www.dnd5eapi.co/api/spells/");
+  // }
+  console.log(props.url);
   useEffect(() => {
     async function getWeapons() {
       // need to check for status.
@@ -104,16 +104,23 @@ function FetchData(props) {
       // equipment window has a list/display of items
       // this eventually gets initialized from db
       // let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon/";
-      const response = await axios.get(url);
-      console.log("useEffect" + response);
-      setQuery(response.data);
+      await axios
+        .get(props.url)
+        .then((response) => {
+          console.log("useEffect" + response);
+          setQuery(response.data.equipment);
+        })
+        .catch((response) => {
+          console.log(`error getting ${props.url}`);
+          response = [];
+        });
     }
-    console.log(url);
+    console.log(props.url);
     getWeapons();
-  }, [url]);
+  }, [setQuery]);
   return (
     <List>
-      {query.results.map((i) => (
+      {query.map((i) => (
         <ListItem key={`weapon-${i}`}>
           <ListItemText primary={`${i}`} />
         </ListItem>
@@ -121,13 +128,6 @@ function FetchData(props) {
     </List>
   );
 }
-// function getEquipment( ) {
-//   // axios convert
-//   let url = 'https://www.dnd5eapi.co/api/equipment/club'
-//   // get list of api indices
-
-//   //get api data from indices
-// }
 
 function Notes(props) {
   const { classes } = props;
@@ -184,7 +184,7 @@ function Notes(props) {
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
       <Dialog open={dialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
-        <FetchData type="weapons" />
+        <FetchData url="https://www.dnd5eapi.co/api/equipment-categories/weapon" />
       </Dialog>
     </Grid>
   );
