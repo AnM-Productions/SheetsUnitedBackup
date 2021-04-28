@@ -11,6 +11,9 @@ import {
   List,
   ListItem,
   ListItemText,
+  Menu,
+  MenuItem,
+  MenuList,
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import axios from "axios";
@@ -66,26 +69,79 @@ function a11yProps(index) {
 }
 
 function FetchData(props) {
-  let [query, setQuery] = useState([]);
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [query2, setQuery2] = useState([]);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
   console.log(props.url);
   useEffect(() => {
     async function getWeapons() {
-      // need to check for status.
-      // from api to list that we can display
-      // in dialog, list of all clubs,
-      // returns to "equipment window"
-      // equipment window has a list/display of items
-      // this eventually gets initialized from db
-      // let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon/";
       await axios
         .get(props.url)
-        .then((response) => {
-          console.log("useEffect" + response);
-          setQuery(response.data.equipment);
+        .then((temp) => {
+          // Testing
+          console.log("useEffect" + temp);
+          // Danger risk!
+          setQuery2(temp.data.equipment);
         })
-        .catch((response) => {
+        .catch((temp) => {
           console.log(`Error getting data from ${props.url}`);
-          response = [];
+          temp = [];
+        });
+    }
+    getWeapons();
+  }, [setQuery2]);
+  return (
+    <div>
+      <Button variant="contained" onClick={handleClick} edge="end">
+        {`${props.name}`}
+      </Button>
+
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        keepMounted
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <List>
+            {query2.map((i) => (
+              <ListItem button key={`${i.index}`}>
+                <ListItemText primary={`${i.name}`} />
+              </ListItem>
+            ))}
+          </List>
+        </MenuItem>
+      </Menu>
+    </div>
+  );
+}
+
+function FetchCategories(props) {
+  const [query, setQuery] = useState([]);
+
+  console.log(props.url);
+  useEffect(() => {
+    async function getWeapons() {
+      await axios
+        .get(props.url)
+        .then((temp) => {
+          // Testing
+          console.log("useEffect" + temp);
+          // Danger risk!
+          setQuery(temp.data.results);
+        })
+        .catch((temp) => {
+          console.log(`Error getting data from ${props.url}`);
+          temp = [];
         });
     }
     getWeapons();
@@ -93,8 +149,8 @@ function FetchData(props) {
   return (
     <List>
       {query.map((i) => (
-        <ListItem button key={`weapon-${i.index}`}>
-          <ListItemText primary={`${i.name}`} />
+        <ListItem button key={`${i.index}`}>
+          <FetchData url={`${props.url}/${i.index}`} name={i.name} />
         </ListItem>
       ))}
     </List>
@@ -170,7 +226,7 @@ function Notes(props) {
           </Tabs>
           <TabPanel value={page} index={0}></TabPanel>
           <TabPanel value={page} index={1}>
-            <Typography variant="h2"> Tab 2</Typography>
+            <Typography variant="h2"> Equipment</Typography>
             <Button variant="contained" onClick={handleWeaponDialogOpen}>
               Add Equipment
             </Button>
@@ -198,7 +254,7 @@ function Notes(props) {
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
       <Dialog open={weaponDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
-        <FetchData url="https://www.dnd5eapi.co/api/equipment-categories/weapon" />
+        <FetchCategories url="https://www.dnd5eapi.co/api/equipment-categories" />
       </Dialog>
       <Dialog open={spellDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Spells</DialogTitle>
