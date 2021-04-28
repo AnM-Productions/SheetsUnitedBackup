@@ -64,36 +64,9 @@ function a11yProps(index) {
     "aria-controls": `simple-tabpanel-${index}`,
   };
 }
-// async function getWeapons() {
-//   // need to check for status.
-//   // from api to list that we can display
-//   // in dialog, list of all clubs,
-//   // returns to "equipment window"
-//   // equipment window has a list/display of items
-//   // this eventually gets initialized from db
-//   let url = "https://www.dnd5eapi.co/api/equipment-categories/weapon";
-//   const response = await axios.get(url);
-//   console.log(response);
-//   return (
-//     <List>
-//       {[1, 2, 3, 4].map((i) => (
-//         <ListItem key={`weapon-${i}`}>
-//           <ListItemText primary={`${i}`} />
-//         </ListItem>
-//       ))}
-//     </List>
-//   );
-// }
+
 function FetchData(props) {
   let [query, setQuery] = useState([]);
-  // const [url, setUrl] = useState(null);
-  // if (props.type === "weapons") {
-  //   setUrl("https://www.dnd5eapi.co/api/equipment-categories/weapon/");
-  // } else if (props.type === "equipment") {
-  //   setUrl("https://www.dnd5eapi.co/api/equipment/");
-  // } /* spells */ else {
-  //   setUrl("https://www.dnd5eapi.co/api/spells/");
-  // }
   console.log(props.url);
   useEffect(() => {
     async function getWeapons() {
@@ -111,18 +84,50 @@ function FetchData(props) {
           setQuery(response.data.equipment);
         })
         .catch((response) => {
-          console.log(`error getting ${props.url}`);
+          console.log(`Error getting data from ${props.url}`);
           response = [];
         });
     }
-    console.log(props.url);
     getWeapons();
   }, [setQuery]);
   return (
     <List>
       {query.map((i) => (
-        <ListItem key={`weapon-${i}`}>
-          <ListItemText primary={`${i}`} />
+        <ListItem button key={`weapon-${i.index}`}>
+          <ListItemText primary={`${i.name}`} />
+        </ListItem>
+      ))}
+    </List>
+  );
+}
+
+function FetchSpells(props) {
+  let [query, setQuery] = useState([]);
+  console.log(props.url);
+  useEffect(() => {
+    async function getSpells() {
+      await axios
+        .get(props.url)
+        .then((response) => {
+          console.log("useEffect" + response);
+          setQuery(response.data.results);
+        })
+        .catch((response) => {
+          console.log(`Error getting data from ${props.url}`);
+          response = [];
+        });
+    }
+    getSpells();
+  }, [setQuery]);
+  return (
+    <List>
+      {/*Option: make function to sort spells by school / level or something rather than alphabetical. or add a search bar */}
+      {query.map((i) => (
+        <ListItem button key={`spell-${i.index}`}>
+          <ListItemText
+            primary={`${i.name}`}
+            secondary="Maybe we could add school or level here. Req separate API calls."
+          />
         </ListItem>
       ))}
     </List>
@@ -133,17 +138,23 @@ function Notes(props) {
   const { classes } = props;
   //   const [open, setOpen] = useState(false);
   const [page, setPage] = useState(0);
-  const [dialogOpen, setDialogOpen] = useState(false);
+  const [weaponDialogOpen, setWeaponDialogOpen] = useState(false);
+  const [spellDialogOpen, setSpellDialogOpen] = useState(false);
 
   const handleChange = (event, newValue) => {
     setPage(newValue);
   };
-  const handleDialogOpen = () => {
-    setDialogOpen(true);
+  const handleWeaponDialogOpen = () => {
+    setWeaponDialogOpen(true);
+    // fetchData('weapons');
+  };
+  const handleSpellDialogOpen = () => {
+    setSpellDialogOpen(true);
     // fetchData('weapons');
   };
   const handleDialogClose = () => {
-    setDialogOpen(false);
+    setWeaponDialogOpen(false);
+    setSpellDialogOpen(false);
   };
 
   /* Here is where we fetch API data for displaying lists of equip/weapons/etc */
@@ -160,12 +171,15 @@ function Notes(props) {
           <TabPanel value={page} index={0}></TabPanel>
           <TabPanel value={page} index={1}>
             <Typography variant="h2"> Tab 2</Typography>
-            <Button variant="contained" onClick={handleDialogOpen}>
+            <Button variant="contained" onClick={handleWeaponDialogOpen}>
               Add Equipment
             </Button>
           </TabPanel>
           <TabPanel value={page} index={2}>
-            <Typography variant="h2"> tab 3 </Typography>
+            <Typography variant="h2"> Spells </Typography>
+            <Button variant="contained" onClick={handleSpellDialogOpen}>
+              Add Spells
+            </Button>
           </TabPanel>
           <TabPanel value={page} index={3}>
             <TextField
@@ -182,9 +196,13 @@ function Notes(props) {
         </Paper>
       </Grid>
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
-      <Dialog open={dialogOpen} onClose={handleDialogClose}>
+      <Dialog open={weaponDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
         <FetchData url="https://www.dnd5eapi.co/api/equipment-categories/weapon" />
+      </Dialog>
+      <Dialog open={spellDialogOpen} onClose={handleDialogClose}>
+        <DialogTitle className={classes.title}>Add Spells</DialogTitle>
+        <FetchSpells url="https://www.dnd5eapi.co/api/spells" />
       </Dialog>
     </Grid>
   );
