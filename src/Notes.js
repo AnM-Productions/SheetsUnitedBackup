@@ -157,36 +157,79 @@ function FetchCategories(props) {
   );
 }
 
+// Spells are organized differently than equipment and must be search by specfic level.
+// This function creates all the buttons that call queries for specific levels.
 function FetchSpells(props) {
-  let [query, setQuery] = useState([]);
-  console.log(props.url);
-  useEffect(() => {
-    async function getSpells() {
-      await axios
-        .get(props.url)
-        .then((response) => {
-          console.log("useEffect" + response);
-          setQuery(response.data.results);
-        })
-        .catch((response) => {
-          console.log(`Error getting data from ${props.url}`);
-          response = [];
-        });
-    }
-    getSpells();
-  }, [setQuery]);
+  const [query, setQuery] = useState([]);
+
+  // api for spell level is https://www.dnd5eapi.co/api/spells?level=X where x is level
+  // props.url has everything but X
+  const levels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+
   return (
     <List>
-      {/*Option: make function to sort spells by school / level or something rather than alphabetical. or add a search bar */}
-      {query.map((i) => (
-        <ListItem button key={`spell-${i.index}`}>
-          <ListItemText
-            primary={`${i.name}`}
-            secondary="Maybe we could add school or level here. Req separate API calls."
-          />
+      {levels.map((i) => (
+        <ListItem button key={`spells-level-${i}`}>
+          <FetchSpellLevels url={`${props.url}${i}`} name={`Level: ${i}`} />
         </ListItem>
       ))}
     </List>
+  );
+}
+
+function FetchSpellLevels(props) {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const [query, setQuery] = useState([]);
+
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleMenuClose = () => {
+    setAnchorEl(null);
+  };
+  useEffect(() => {
+    async function getSpellLevels() {
+      await axios
+        .get(props.url)
+        .then((temp) => {
+          // Testing
+          console.log("useEffect" + temp.data);
+          // Danger risk!
+          setQuery(temp.data.results);
+        })
+        .catch((temp) => {
+          console.log(`Error getting data from ${props.url}`);
+          temp = [];
+        });
+    }
+    getSpellLevels();
+  }, [setQuery]);
+  return (
+    <div>
+      <Button variant="contained" onClick={handleClick} edge="end">
+        {`${props.name}`}
+      </Button>
+
+      <Menu
+        anchorEl={anchorEl}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+        keepMounted
+        transformOrigin={{ vertical: "top", horizontal: "center" }}
+        open={Boolean(anchorEl)}
+        onClose={handleMenuClose}
+      >
+        <MenuItem onClick={handleMenuClose}>
+          <List>
+            {query.map((i) => (
+              <ListItem button key={`${i.index}`}>
+                <ListItemText primary={`${i.name}`} />
+              </ListItem>
+            ))}
+          </List>
+        </MenuItem>
+      </Menu>
+    </div>
   );
 }
 
@@ -258,7 +301,8 @@ function Notes(props) {
       </Dialog>
       <Dialog open={spellDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Spells</DialogTitle>
-        <FetchSpells url="https://www.dnd5eapi.co/api/spells" />
+
+        <FetchSpells url="https://www.dnd5eapi.co/api/spells?level=" />
       </Dialog>
     </Grid>
   );
