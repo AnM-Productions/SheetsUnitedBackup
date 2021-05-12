@@ -79,14 +79,12 @@ function FetchData(props) {
   const handleMenuClose = () => {
     setAnchorEl(null);
   };
-  console.log(props.url);
   useEffect(() => {
     async function getWeapons() {
       await axios
         .get(props.url)
         .then((temp) => {
           // Testing
-          console.log("useEffect" + temp);
           // Danger risk!
           setQuery2(temp.data.equipment);
         })
@@ -128,14 +126,11 @@ function FetchData(props) {
 function FetchCategories(props) {
   const [query, setQuery] = useState([]);
 
-  console.log(props.url);
   useEffect(() => {
     async function getWeapons() {
       await axios
         .get(props.url)
         .then((temp) => {
-          // Testing
-          console.log("useEffect" + temp);
           // Danger risk!
           setQuery(temp.data.results);
         })
@@ -161,11 +156,9 @@ function FetchCategories(props) {
 // This function creates all the buttons that call queries for specific levels.
 function FetchSpells(props) {
   const [query, setQuery] = useState([]);
-
   // api for spell level is https://www.dnd5eapi.co/api/spells?level=X where x is level
   // props.url has everything but X
   const levels = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
-
   return (
     <List>
       {levels.map((i) => (
@@ -193,8 +186,6 @@ function FetchSpellLevels(props) {
       await axios
         .get(props.url)
         .then((temp) => {
-          // Testing
-          console.log("useEffect" + temp.data);
           // Danger risk!
           setQuery(temp.data.results);
         })

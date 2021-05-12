@@ -16,7 +16,7 @@ const styles = {
     paddingBottom: "10px",
   },
   field: {
-    padding: "20px",
+    padding: "10px",
   },
   page: {
     position: "absolute",
@@ -24,15 +24,15 @@ const styles = {
   card: {
     backgroundColor: "#d7cec7",
     padding: "10px",
-    marginTop: "2em",
-    minWidth: '440px'
+    marginTop: "1em",
+    minWidth: "440px",
   },
   column: {
-    height: "100vh",
     margin: "10px",
   },
   gridItem: {
-    height: "100%",
+    margin: "10px",
+    height: "50%",
   },
 };
 
@@ -49,44 +49,38 @@ function Character(props) {
   };
 
   return (
-    <Grid
-      className={classes.page}
-      container
-      justify="center"
-      alightItems="center"
-      spacing={0}
-    >
-      <Grid className={classes.column} xs={3} item></Grid>
-      <Grid className={classes.column} xs={3} item>
-        <Grid container direction="column">
-          <Paper className={classes.card}>
-            <Grid className={classes.gridItem} xs={12} item>
-              <InfoBar></InfoBar>
-            </Grid>
-          </Paper>
-          <Paper className={classes.card}>
-            <Grid className={classes.gridItem} xs={12} item>
-              <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
-            </Grid>
-          </Paper>
-          <Paper className={classes.card}>
-            <Grid className={classes.gridItem} xs={12} item>
-              <Stat handleClickOpen={handleClickOpen}></Stat>
-            </Grid>
-          </Paper>
-          <Paper className={classes.card}>
-            <Grid className={classes.gridItem} xs={12} item>
-              <Proficiency></Proficiency>
-            </Grid>
-          </Paper>
-        </Grid>
+    /* This Grid is kind of ugly. I think we should explore something like react-grid-layout, https://github.com/react-grid-layout/react-grid-layout
+     * which looks like it supports bootstrap style grids with more flexibility with items spanning rows,
+     * that way our boxes dont all need to be the same height
+     * Unless theres a way to do that with Material UI! But I haved found anything. It seems pretty inflexible when
+     * It comes to items spanning multiple rows.
+     * Maybe we could also import just the grid component of bootstrap?
+     * */
+    <Grid className={classes.page} container justify="center" spacing={0}>
+      <Grid xs={11} item className={classes.gridItem}>
+        <Paper className={classes.card}>
+          <InfoBar></InfoBar>
+        </Paper>
+      </Grid>
+      <Grid className={classes.gridItem} xs={4} item>
+        <Paper className={classes.card}>
+          <Stat handleClickOpen={handleClickOpen}></Stat>
+        </Paper>
+      </Grid>
+      <Grid className={classes.gridItem} xs={7} item>
+        <Paper className={classes.card}>
+          <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
+        </Paper>
+      </Grid>
+      <Grid className={classes.gridItem} xs={7} item>
+        <Paper className={classes.card}>
+          <Proficiency></Proficiency>
+        </Paper>
       </Grid>
 
-      <Grid className={classes.column} xs={3} item>
-        
-      </Grid>
+      <Grid className={classes.column} direction="row" xs={12} item></Grid>
       <Dialog open={open} onClose={handleClose}>
-        <Grid container className={classes.dialogContainer} spacing={0}>
+        <Grid className={classes.dialogContainer} spacing={0}>
           <Grid className={classes.field} item xs={4}>
             <TextField label="Health"></TextField>
           </Grid>

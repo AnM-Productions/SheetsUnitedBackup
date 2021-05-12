@@ -62,6 +62,7 @@ function Stat(props) {
   const handleChange = (props) => (event) => {
     setStats({ ...stats, [props]: event.target.value });
     let mod = Math.floor((event.target.value - 10) / 2);
+    if (mod >= 0) mod = `+${mod}`;
     console.log(mod);
     setMods({ ...mods, [props]: mod });
   };
