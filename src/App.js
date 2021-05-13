@@ -46,14 +46,14 @@ const useStyles = makeStyles((theme) => ({
     alighItems: "center",
     justify: "center",
     flexWrap: "nowrap",
-    height: '1420px',
-    margin: '0px',
+    height: "1420px",
+    margin: "0px",
   },
   card: {
     backgroundColor: "#d7cec7",
     padding: "10px",
     marginTop: "2em",
-    flexWrap: "nowrap"
+    flexWrap: "nowrap",
   },
   classMenu: {
     marginLeft: "16px",
@@ -68,6 +68,14 @@ export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
+  const [values, setValues] = useState({
+    health: "0",
+    ac: "0",
+    hit_die: "0",
+    initiative: "0",
+    movement: "0",
+    proficiency: "0",
+  });
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -83,6 +91,19 @@ export default function App() {
 
   const fadeLogin = () => {
     setLogin((prev) => !prev);
+  };
+
+  const handleChange = (props) => (event) => {
+    console.log("handle Change called");
+    setValues({ ...values, [props]: event.target.value });
+    console.log(values);
+  };
+
+  const handleSave = () => {
+    /* Pass up functions to character.js, corestats.js, details.js, stat.js
+     * They can save pass back their data, then it gets saved here?
+     * or they individually call save functions. */
+    console.log("Saved");
   };
 
   return (
@@ -105,6 +126,14 @@ export default function App() {
             <IconButton variant="contained" onClick={swapDetails}>
               <LibraryBooks />
             </IconButton>
+            <Button
+              className={classes.classMenu}
+              variant="contained"
+              onClick={handleSave}
+              edge="end"
+            >
+              Save Character
+            </Button>
             <Button
               className={classes.classMenu}
               variant="contained"
@@ -146,7 +175,7 @@ export default function App() {
           alightItems="center"
           spacing={0}
         >
-          <Character></Character>
+          <Character values={values} handleChange={handleChange}></Character>
         </Grid>
       </Fade>
       <Fade in={details & !login}>
