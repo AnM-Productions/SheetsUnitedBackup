@@ -24,15 +24,27 @@ const styles = {
   card: {
     backgroundColor: "#d7cec7",
     padding: "10px",
-    marginTop: "1em",
-    minWidth: "440px",
+    // marginTop: "1em",
+    // minWidth: "440px",
   },
   column: {
     margin: "10px",
   },
   gridItem: {
-    margin: "10px",
-    height: "50%",
+    // margin: "10px",
+    // height: "50%",
+  },
+  topRow: {
+    margin: "10px 20px 0px 20px",
+    height: "100%",
+  },
+  gridRow: {
+    margin: "0px 20px 0px 20px",
+    height: "100%",
+  },
+  stats: {
+    margin: "10px 0px",
+    // height: "100%",
   },
 };
 
@@ -49,33 +61,30 @@ function Character(props) {
   };
 
   return (
-    /* This Grid is kind of ugly. I think we should explore something like react-grid-layout, https://github.com/react-grid-layout/react-grid-layout
-     * which looks like it supports bootstrap style grids with more flexibility with items spanning rows,
-     * that way our boxes dont all need to be the same height
-     * Unless theres a way to do that with Material UI! But I haved found anything. It seems pretty inflexible when
-     * It comes to items spanning multiple rows.
-     * Maybe we could also import just the grid component of bootstrap?
-     * */
-    <Grid className={classes.page} container justify="center" spacing={0}>
-      <Grid xs={11} item className={classes.gridItem}>
+    <Grid container className={classes.page} spacing={1}>
+      <Grid item xs={12} className={classes.topRow}>
         <Paper className={classes.card}>
           <InfoBar></InfoBar>
         </Paper>
       </Grid>
-      <Grid className={classes.gridItem} xs={4} item>
-        <Paper className={classes.card}>
-          <Stat handleClickOpen={handleClickOpen}></Stat>
-        </Paper>
-      </Grid>
-      <Grid className={classes.gridItem} xs={7} item>
-        <Paper className={classes.card}>
-          <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
-        </Paper>
-      </Grid>
-      <Grid className={classes.gridItem} xs={7} item>
-        <Paper className={classes.card}>
-          <Proficiency></Proficiency>
-        </Paper>
+      <Grid container xs={12} className={classes.gridRow} spacing={1}>
+        <Grid item xs={5} className={classes.stats}>
+          <Paper className={classes.card}>
+            <Stat handleClickOpen={handleClickOpen}></Stat>
+          </Paper>
+        </Grid>
+        <Grid item xs={7} className={classes.gridItem}>
+          <Grid item className={classes.stats}>
+            <Paper className={classes.card}>
+              <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
+            </Paper>
+          </Grid>
+          <Grid item className={classes.stats}>
+            <Paper className={classes.card}>
+              <Proficiency></Proficiency>
+            </Paper>
+          </Grid>
+        </Grid>
       </Grid>
 
       <Grid className={classes.column} direction="row" xs={12} item></Grid>

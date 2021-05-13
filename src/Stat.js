@@ -43,12 +43,12 @@ function Stat(props) {
     charisma: "0",
   });
   const [mods, setMods] = useState({
-    dexterity: "0",
-    intelligence: "0",
-    strength: "0",
-    wisdom: "0",
-    consitution: "0",
-    charisma: "0",
+    dexterity: "+0",
+    intelligence: "+0",
+    strength: "+0",
+    wisdom: "+0",
+    consitution: "+0",
+    charisma: "+0",
   });
 
   const handleClose = () => {
@@ -159,7 +159,6 @@ function Stat(props) {
             </Grid>
             <Grid className={classes.field} item xs={4}>
               {mods.intelligence}
-              {/* TODO Add a function to determine whether or not int mod is positive, then display +x instead of just x. */}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
