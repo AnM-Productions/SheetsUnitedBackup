@@ -32,25 +32,14 @@ const styles = {
 function CoreStats(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
-  const [values, setValues] = useState({
-    health: "0",
-    ac: "0",
-    hit_die: "0",
-    initiative: "0",
-    movement: "0",
-    proficiency: "0",
-  });
 
   const handleClose = () => {
     setOpen(false);
+    console.log(props);
   };
 
   const handleClickOpen = () => {
     setOpen(true);
-  };
-
-  const handleChange = (props) => (event) => {
-    setValues({ ...values, [props]: event.target.value });
   };
 
   return (
@@ -62,7 +51,7 @@ function CoreStats(props) {
               Health
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.health}
+              {props.values.health}
             </Box>
           </Typography>
         </Paper>
@@ -74,7 +63,7 @@ function CoreStats(props) {
               AC
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.ac}
+              {props.values.ac}
             </Box>
           </Typography>
         </Paper>
@@ -86,7 +75,7 @@ function CoreStats(props) {
               Hit Die
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.hit_die}
+              {props.values.hit_die}
             </Box>
           </Typography>
         </Paper>
@@ -98,7 +87,7 @@ function CoreStats(props) {
               Initiative
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.initiative}
+              {props.values.initiative}
             </Box>
           </Typography>
         </Paper>
@@ -110,7 +99,7 @@ function CoreStats(props) {
               Movement
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.movement}
+              {props.values.movement}
             </Box>
           </Typography>
         </Paper>
@@ -122,7 +111,7 @@ function CoreStats(props) {
               Proficiency
             </Box>
             <Box fontWeight={600} lineHeight={2}>
-              {values.proficiency}
+              {props.values.proficiency}
             </Box>
           </Typography>
         </Paper>
@@ -135,34 +124,37 @@ function CoreStats(props) {
           <Grid className={classes.field} item xs={4}>
             <TextField
               label="Health"
-              onChange={handleChange("health")}
+              onChange={props.handleChange("health")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
-            <TextField label="AC" onChange={handleChange("ac")}></TextField>
+            <TextField
+              label="AC"
+              onChange={props.handleChange("ac")}
+            ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
               label="Hit Die"
-              onChange={handleChange("hit_die")}
+              onChange={props.handleChange("hit_die")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
               label="Initiative"
-              onChange={handleChange("initiative")}
+              onChange={props.handleChange("initiative")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
               label="Movement"
-              onChange={handleChange("movement")}
+              onChange={props.handleChange("movement")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
               label="Proficiency"
-              onChange={handleChange("proficiency")}
+              onChange={props.handleChange("proficiency")}
             ></TextField>
           </Grid>
         </Grid>

@@ -56,10 +56,6 @@ function Character(props) {
     setOpen(false);
   };
 
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
   return (
     <Grid container className={classes.page} spacing={1}>
       <Grid item xs={12} className={classes.topRow}>
@@ -70,13 +66,19 @@ function Character(props) {
       <Grid container xs={12} className={classes.gridRow} spacing={1}>
         <Grid item xs={5} className={classes.stats}>
           <Paper className={classes.card}>
-            <Stat handleClickOpen={handleClickOpen}></Stat>
+            <Stat
+              values={props.values}
+              handleStatChange={props.handleStatChange}
+            ></Stat>
           </Paper>
         </Grid>
         <Grid item xs={7} className={classes.gridItem}>
           <Grid item className={classes.stats}>
             <Paper className={classes.card}>
-              <CoreStats handleClickOpen={handleClickOpen}></CoreStats>
+              <CoreStats
+                values={props.values}
+                handleChange={props.handleChange}
+              ></CoreStats>
             </Paper>
           </Grid>
           <Grid item className={classes.stats}>
