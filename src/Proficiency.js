@@ -9,6 +9,10 @@ const styles = {
   field: {
     padding: "5px",
   },
+  checkbox: {
+    width: "20%",
+    padding: "5px",
+  },
   paperStyle: {
     paddingLeft: '5px',
     margin: '8px',
@@ -208,11 +212,20 @@ function Proficiency(props) {
                 <FormControl>
                   <FormGroup>
                     <FormLabel className={classes.field}>Wisdom</FormLabel>
-                    <FormControlLabel
-                      className={classes.field}
-                      control={<Checkbox/>}
-                      label="Perception"
-                    />
+                    <FormControl className={classes.formGroup}>
+                      <FormGroup row="false">
+                        <FormControlLabel
+                          className={classes.checkbox}
+                          control={<Checkbox/>}
+                          disabled="true"
+                        />
+                        <FormControlLabel
+                          className={classes.checkbox}
+                          control={<Checkbox/>}
+                          label="Perception"
+                        />
+                      </FormGroup>
+                    </FormControl>
                     <FormControlLabel
                       className={classes.field}
                       control={<Checkbox/>}
