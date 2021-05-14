@@ -68,6 +68,7 @@ function Character(props) {
           <Paper className={classes.card}>
             <Stat
               values={props.values}
+              mods={props.mods}
               handleStatChange={props.handleStatChange}
             ></Stat>
           </Paper>
@@ -83,7 +84,12 @@ function Character(props) {
           </Grid>
           <Grid item className={classes.stats}>
             <Paper className={classes.card}>
-              <Proficiency></Proficiency>
+              <Proficiency
+                values={props.values}
+                disabled={props.disabled}
+                handleSingleChange={props.handleSingleChange}
+                handleDoubleChange={props.handleDoubleChange}
+              ></Proficiency>
             </Paper>
           </Grid>
         </Grid>

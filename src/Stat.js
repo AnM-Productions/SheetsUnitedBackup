@@ -34,22 +34,6 @@ const styles = {
 function Stat(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
-  const [stats, setStats] = useState({
-    dexterity: "0",
-    intelligence: "0",
-    strength: "0",
-    wisdom: "0",
-    constitution: "0",
-    charisma: "0",
-  });
-  const [mods, setMods] = useState({
-    dexterity: "+0",
-    intelligence: "+0",
-    strength: "+0",
-    wisdom: "+0",
-    consitution: "+0",
-    charisma: "+0",
-  });
 
   const handleClose = () => {
     setOpen(false);
@@ -57,14 +41,6 @@ function Stat(props) {
 
   const handleClickOpen = () => {
     setOpen(true);
-  };
-
-  const handleChange = (props) => (event) => {
-    setStats({ ...stats, [props]: event.target.value });
-    let mod = Math.floor((event.target.value - 10) / 2);
-    if (mod >= 0) mod = `+${mod}`;
-    console.log(mod);
-    setMods({ ...mods, [props]: mod });
   };
 
   return (
@@ -85,10 +61,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.dexterity}
+              {props.values.dexterity}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.dexterity}
+              {props.mods.dexterity}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
@@ -103,37 +79,37 @@ function Stat(props) {
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Dexterity"
-                onChange={handleChange("dexterity")}
+                onChange={props.handleStatChange("dexterity")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Intelligence"
-                onChange={handleChange("intelligence")}
+                onChange={props.handleStatChange("intelligence")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Strength"
-                onChange={handleChange("strength")}
+                onChange={props.handleStatChange("strength")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Wisdom"
-                onChange={handleChange("wisdom")}
+                onChange={props.handleStatChange("wisdom")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Constitution"
-                onChange={handleChange("constitution")}
+                onChange={props.handleStatChange("constitution")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
                 label="Charisma"
-                onChange={handleChange("charisma")}
+                onChange={props.handleStatChange("charisma")}
               ></TextField>
             </Grid>
           </Grid>
@@ -155,10 +131,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.intelligence}
+              {props.values.intelligence}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.intelligence}
+              {props.mods.intelligence}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
@@ -182,10 +158,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.strength}
+              {props.values.strength}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.strength}
+              {props.mods.strength}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
@@ -209,10 +185,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.wisdom}
+              {props.values.wisdom}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.wisdom}
+              {props.mods.wisdom}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
@@ -236,10 +212,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.constitution}
+              {props.values.constitution}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.constitution}
+              {props.mods.constitution}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0
@@ -263,10 +239,10 @@ function Stat(props) {
               save
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {stats.charisma}
+              {props.values.charisma}
             </Grid>
             <Grid className={classes.field} item xs={4}>
-              {mods.charisma}
+              {props.mods.charisma}
             </Grid>
             <Grid className={classes.field} item xs={4}>
               0

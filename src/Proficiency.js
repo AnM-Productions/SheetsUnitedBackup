@@ -1,9 +1,15 @@
-import React, {useState} from "react";
+import React, { useState } from "react";
 import { Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
-import { Dialog, DialogTitle } from '@material-ui/core'
-import { FormControl, FormLabel, FormGroup, FormControlLabel, Checkbox} from '@material-ui/core'
+import { Dialog, DialogTitle } from "@material-ui/core";
+import {
+  FormControl,
+  FormLabel,
+  FormGroup,
+  FormControlLabel,
+  Checkbox,
+} from "@material-ui/core";
 
 const styles = {
   field: {
@@ -11,11 +17,11 @@ const styles = {
   },
   checkbox: {
     padding: "10px",
-    maxWidth: "50%"
+    maxWidth: "50%",
   },
   paperStyle: {
-    paddingLeft: '5px',
-    margin: '8px',
+    paddingLeft: "5px",
+    margin: "8px",
     "&:hover": {
       opacity: "0.75",
     },
@@ -26,25 +32,24 @@ const styles = {
     fontWeight: "600",
   },
   dialogContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    textAlign: 'center',
-    paddingBottom: '10px'
+    display: "flex",
+    justifyContent: "center",
+    textAlign: "center",
+    paddingBottom: "10px",
   },
 };
 
 function Proficiency(props) {
   const { classes } = props;
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   const handleClose = () => {
-    setOpen(false)
-  }
+    setOpen(false);
+  };
 
   const handleClickOpen = () => {
-    setOpen(true)
-  }
-
+    setOpen(true);
+  };
 
   return (
     <Grid container spacing={0}>
@@ -53,7 +58,7 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Wisdom  +0
+                Wisdom +0
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 Perception
@@ -92,7 +97,7 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Intelligence  +0
+                Intelligence +0
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 Arcana
@@ -133,7 +138,7 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Stength  +0
+                Stength +0
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 Athletics
@@ -148,7 +153,7 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Dexterity  +0
+                Dexterity +0
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 Acrobatics
@@ -175,7 +180,7 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Charisma  +0
+                Charisma +0
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 Persuasion
@@ -203,286 +208,301 @@ function Proficiency(props) {
               </Grid>
             </Grid>
           </Paper>
-        </Grid>  
+        </Grid>
       </Grid>
       <Dialog open={open} onClose={handleClose}>
-        <DialogTitle className={classes.title}>Set Character Info</DialogTitle>      
-            <Grid container className={classes.dialogContainer} spacing={0}>
-              <Grid className={classes.field} item xs={6}>
-                <FormControl>
-                  <FormGroup>
-                    <FormLabel className={classes.field}>Wisdom</FormLabel>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
+        <DialogTitle className={classes.title}>Set Character Info</DialogTitle>
+        <Grid container className={classes.dialogContainer} spacing={0}>
+          <Grid className={classes.field} item xs={6}>
+            <FormControl>
+              <FormGroup>
+                <FormLabel className={classes.field}>Wisdom</FormLabel>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("perception")}
                         />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
+                      }
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("perception")}
                         />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                  </FormGroup>
-                  <FormGroup>
-                    <FormLabel className={classes.field}>Intelligence</FormLabel>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
+                      }
+                    />
                   </FormGroup>
                 </FormControl>
-              </Grid>
-              <Grid className={classes.field} item xs={6}>
-                <FormControl>
-                  <FormGroup>
-                    <FormLabel className={classes.field}>Strength</FormLabel>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={
+                        <Checkbox
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange}
                         />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                  </FormGroup>
-                  <FormLabel className={classes.field}>Dexterity</FormLabel>
-                  <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                  <FormGroup>
-                    <FormLabel>Charisma</FormLabel>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
-                    <FormControl className={classes.formGroup}>
-                      <FormGroup row="false">
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                          labelPlacement="start"
-                          label="Perception"
-                        />
-                        <FormControlLabel
-                          className={classes.checkbox}
-                          control={<Checkbox/>}
-                        />
-                      </FormGroup>
-                    </FormControl>
+                      }
+                    />
                   </FormGroup>
                 </FormControl>
-              </Grid>
-            </Grid>
-        </Dialog>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+              </FormGroup>
+              <FormGroup>
+                <FormLabel className={classes.field}>Intelligence</FormLabel>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+              </FormGroup>
+            </FormControl>
+          </Grid>
+          <Grid className={classes.field} item xs={6}>
+            <FormControl>
+              <FormGroup>
+                <FormLabel className={classes.field}>Strength</FormLabel>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+              </FormGroup>
+              <FormLabel className={classes.field}>Dexterity</FormLabel>
+              <FormControl className={classes.formGroup}>
+                <FormGroup row="false">
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                    labelPlacement="start"
+                    label="Perception"
+                  />
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                  />
+                </FormGroup>
+              </FormControl>
+              <FormControl className={classes.formGroup}>
+                <FormGroup row="false">
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                    labelPlacement="start"
+                    label="Perception"
+                  />
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                  />
+                </FormGroup>
+              </FormControl>
+              <FormControl className={classes.formGroup}>
+                <FormGroup row="false">
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                    labelPlacement="start"
+                    label="Perception"
+                  />
+                  <FormControlLabel
+                    className={classes.checkbox}
+                    control={<Checkbox />}
+                  />
+                </FormGroup>
+              </FormControl>
+              <FormGroup>
+                <FormLabel>Charisma</FormLabel>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formGroup}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                      labelPlacement="start"
+                      label="Perception"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={<Checkbox />}
+                    />
+                  </FormGroup>
+                </FormControl>
+              </FormGroup>
+            </FormControl>
+          </Grid>
+        </Grid>
+      </Dialog>
     </Grid>
   );
 }

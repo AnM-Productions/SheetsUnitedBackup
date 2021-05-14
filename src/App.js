@@ -68,6 +68,8 @@ export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
+  const [disabled, setDisabled] = useState(true);
+  const [checked, setChecked] = useState(true);
   const [values, setValues] = useState({
     health: "0",
     ac: "0",
@@ -75,7 +77,49 @@ export default function App() {
     initiative: "0",
     movement: "0",
     proficiency: "0",
+    dexterity: "0",
+    intelligence: "0",
+    strength: "0",
+    wisdom: "0",
+    constitution: "0",
+    charisma: "0",
+    // Prof Note: 0 is not proficient, 1 = proficient, 2 = expertise
+    perception: "0",
+    survival: "0",
+    insight: "0",
+    medicine: "0",
+    animalHandling: "0",
+    arcana: "0",
+    investigation: "0",
+    religion: "0",
+    nature: "0",
+    history: "0",
+    athletics: "0",
+    acrobatic: "0",
+    stealth: "0",
+    sleightOfHand: "0",
+    persuasion: "0",
+    intimidation: "0",
+    deception: "0",
+    performance: "0",
   });
+
+  const [mods, setMods] = useState({
+    dexterity: "+0",
+    intelligence: "+0",
+    strength: "+0",
+    wisdom: "+0",
+    consitution: "+0",
+    charisma: "+0",
+  });
+
+  const handleStatChange = (props) => (event) => {
+    setValues({ ...values, [props]: event.target.value });
+    let mod = Math.floor((event.target.value - 10) / 2);
+    if (mod >= 0) mod = `+${mod}`;
+    console.log(mod);
+    setMods({ ...mods, [props]: mod });
+  };
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -94,9 +138,7 @@ export default function App() {
   };
 
   const handleChange = (props) => (event) => {
-    console.log("handle Change called");
     setValues({ ...values, [props]: event.target.value });
-    console.log(values);
   };
 
   const handleSave = () => {
@@ -105,7 +147,31 @@ export default function App() {
      * or they individually call save functions. */
     console.log("Saved");
   };
-
+  const handleSingleChange = (props) => (event) => {
+    console.log("clicked!");
+    if (event.target.checked) {
+      setValues({ ...values, [props]: 1 });
+      setDisabled(false);
+      console.log(`Single change called. Value of disabled ${disabled}`);
+    } else {
+      setValues({ ...values, [props]: 0 });
+      setChecked(false);
+      setDisabled(true);
+      console.log(
+        `single changed called, box unchecked, value of disabled ${disabled}`
+      );
+    }
+    console.log(checked);
+  };
+  const handleDoubleChange = (props) => (event) => {
+    if (event.target.checked) {
+      setValues({ ...values, [props]: 2 });
+      console.log(props);
+    } else {
+      setValues({ ...values, [props]: 1 });
+      console.log(props);
+    }
+  };
   return (
     <div className={classes.back}>
       <AppBar className={classes.titleBar} position="static">
@@ -175,7 +241,16 @@ export default function App() {
           alightItems="center"
           spacing={0}
         >
-          <Character values={values} handleChange={handleChange}></Character>
+          <Character
+            values={values}
+            mods={mods}
+            disabled={disabled}
+            checked={checked}
+            handleChange={handleChange}
+            handleStatChange={handleStatChange}
+            handleSingleChange={handleSingleChange}
+            handleDoubleChange={handleDoubleChange}
+          ></Character>
         </Grid>
       </Fade>
       <Fade in={details & !login}>
