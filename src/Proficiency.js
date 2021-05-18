@@ -532,10 +532,6 @@ function Proficiency(props) {
                         className={classes.checkbox2}
                         control={
                           <Checkbox
-<<<<<<< HEAD
-=======
-                            checked={props.checked}
->>>>>>> b985f0fd35b831f3446c7378a24b2a0b7935e641
                             disabled={props.disabled.acrobatics}
                             onChange={props.handleDoubleChange("acrobatics")}
                           />
