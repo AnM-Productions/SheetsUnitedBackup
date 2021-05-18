@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import { Dialog, Grid } from "@material-ui/core";
+import { Dialog, Grid, Button, Typography, Box } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { DialogTitle } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
+import rolld20 from "./dice";
 
 const styles = {
   field: {
@@ -25,6 +26,14 @@ const styles = {
       opacity: "0.75",
     },
   },
+  sectionTitle: {
+    margin: "0px 0px 0px 0px",
+    padding: "0px 5px 0px 5px",
+    height: "30px",
+    "&:hover": {
+      opacity: "0.75",
+    },
+  },
   attrName: {
     fontSize: "20px",
     fontWeight: "600",
@@ -42,6 +51,14 @@ function Stat(props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
+  function rollSave(name, modifier) {
+    console.log("handling roll dialog box opening");
+    const rollmsg = rolld20(name, parseInt(modifier));
+    console.log(rollmsg);
+    console.log(name);
+    console.log(parseInt(modifier));
+    alert(rollmsg);
+  }
 
   return (
     <Grid container spacing={2}>
@@ -116,10 +133,16 @@ function Stat(props) {
         </Dialog>
       </Grid>
       <Grid item xs={6}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+        <Paper
+          onClick={() =>
+            rollSave("Intelligence Saving Throw", props.mods.intelligence)
+          }
+          className={classes.paperStyle}
+        >
           <Grid container spacing={1}>
             <Grid className={classes.attrName} item xs={12}>
               Intelligence
+              <Button size="small">Roll Save</Button>
             </Grid>
             <Grid className={classes.field} item xs={4}>
               value
@@ -248,6 +271,15 @@ function Stat(props) {
               0
             </Grid>
           </Grid>
+        </Paper>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper onClick={handleClickOpen} className={classes.sectionTitle}>
+          <Typography align="center" className={classes.attrName}>
+            <Box component="span" textAlign="center" display="inline">
+              Edit Stats
+            </Box>
+          </Typography>
         </Paper>
       </Grid>
     </Grid>
