@@ -128,7 +128,7 @@ export default function App() {
     intelligence: "+0",
     strength: "+0",
     wisdom: "+0",
-    consitution: "+0",
+    constitution: "+0",
     charisma: "+0",
   });
 

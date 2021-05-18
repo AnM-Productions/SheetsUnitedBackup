@@ -20,6 +20,7 @@ const styles = {
   },
   page: {
     position: "absolute",
+    maxWidth: "1024px",
   },
   card: {
     backgroundColor: "#d7cec7",
@@ -41,6 +42,7 @@ const styles = {
   gridRow: {
     margin: "0px 20px 0px 20px",
     height: "100%",
+    display: "flex",
   },
   stats: {
     margin: "10px 0px",
@@ -86,6 +88,7 @@ function Character(props) {
             <Paper className={classes.card}>
               <Proficiency
                 values={props.values}
+                mods={props.mods}
                 disabled={props.disabled}
                 checked={props.checked}
                 handleSingleChange={props.handleSingleChange}

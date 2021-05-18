@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid } from "@material-ui/core";
+import { Grid, Box, Button } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Dialog, DialogTitle } from "@material-ui/core";
@@ -10,6 +10,8 @@ import {
   FormControlLabel,
   Checkbox,
 } from "@material-ui/core";
+import rolld20 from "./dice";
+import CasinoIcon from "@material-ui/icons/Casino";
 
 const styles = {
   field: {
@@ -46,6 +48,10 @@ const styles = {
     textAlign: "center",
     paddingBottom: "10px",
   },
+  profDisclaimer: {
+    fontWeight: "700",
+    fontSize: "12px",
+  },
 };
 
 function Proficiency(props) {
@@ -60,6 +66,27 @@ function Proficiency(props) {
     setOpen(true);
   };
 
+  function proficiencyCheck(skill) {
+    if (skill === 1) return "\tP";
+    else if (skill === 2) return "\tE";
+  }
+
+  function rollCheck(name, prof, profbonus, modifier) {
+    let mod = parseInt(modifier);
+    let roll = rolld20();
+    let rollmsg = `${name}`;
+    if (prof === 1) rollmsg = rollmsg + ` (with Proficiency)`;
+    else if (prof === 2) rollmsg = rollmsg + ` (with Expertise)`;
+    rollmsg = rollmsg + `: ${roll} `;
+    if (mod + prof * profbonus >= 0)
+      rollmsg =
+        rollmsg +
+        `+ ${mod + prof * profbonus} = ${roll + mod + prof * profbonus}`;
+    else rollmsg = rollmsg + `- ${mod * -1} = ${roll + mod}`;
+    // Multiplying by -1 for easy formatting
+    alert(rollmsg);
+  }
+
   return (
     <Grid container spacing={0}>
       <Grid container xs={6}>
@@ -67,36 +94,66 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Wisdom +0
+                Wisdom: {props.mods.wisdom}
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={8}>
                 Perception
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.perception))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Perception Check",
+                      props.values.perception,
+                      props.values.proficiency,
+                      props.mods.wisdom
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={8}>
                 Survival
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.survival))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Insight
+              <Grid className={classes.field} item xs={8}>
+                Insight{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.insight))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Medicine
+              <Grid className={classes.field} item xs={8}>
+                Medicine{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.medicine))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Animal Handling
+              <Grid className={classes.field} item xs={8}>
+                Animal Handling{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.animalHandling))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
             </Grid>
@@ -106,36 +163,51 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Intelligence +0
+                Intelligence: {props.mods.intelligence}
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Arcana
+              <Grid className={classes.field} item xs={8}>
+                Arcana{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.arcana))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Investigation
+              <Grid className={classes.field} item xs={8}>
+                Investigation{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.investigation))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Religion
+              <Grid className={classes.field} item xs={8}>
+                Religion{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.religion))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Nature
+              <Grid className={classes.field} item xs={8}>
+                Nature{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.nature))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                History
+              <Grid className={classes.field} item xs={8}>
+                History{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.history))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
             </Grid>
@@ -147,12 +219,15 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Stength +0
+                Stength: {props.mods.strength}
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Athletics
+              <Grid className={classes.field} item xs={8}>
+                Athletics{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.athletics))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
             </Grid>
@@ -162,24 +237,33 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Dexterity +0
+                Dexterity: {props.mods.dexterity}
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Acrobatics
+              <Grid className={classes.field} item xs={8}>
+                Acrobatics{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.acrobatics))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Stealth
+              <Grid className={classes.field} item xs={8}>
+                Stealth{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.stealth))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Sleight of Hand
+              <Grid className={classes.field} item xs={8}>
+                Sleight of Hand{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.sleightOfHand))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
             </Grid>
@@ -189,30 +273,42 @@ function Proficiency(props) {
           <Paper className={classes.paperStyle} onClick={handleClickOpen}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
-                Charisma +0
+                Charisma: {props.mods.charisma}
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Persuasion
+              <Grid className={classes.field} item xs={8}>
+                Persuasion{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.persuasion))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Intimidation
+              <Grid className={classes.field} item xs={8}>
+                Intimidation{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.intimidation))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Deception
+              <Grid className={classes.field} item xs={8}>
+                Deception{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.deception))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
-              <Grid className={classes.field} item xs={6}>
-                Performance
+              <Grid className={classes.field} item xs={8}>
+                Performance{" "}
+                <Box component="span" className={classes.profDisclaimer}>
+                  {proficiencyCheck(parseInt(props.values.performance))}
+                </Box>
               </Grid>
-              <Grid className={classes.field} item xs={6}>
+              <Grid className={classes.field} item xs={4}>
                 0
               </Grid>
             </Grid>
@@ -557,7 +653,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           disabled={props.disabled.sleightOfHand}
-                          onChange={props.handleDoubleChange("sleight of hand")}
+                          onChange={props.handleDoubleChange("sleightOfHand")}
                         />
                       }
                     />

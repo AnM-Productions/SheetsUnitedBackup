@@ -9,7 +9,7 @@ import { TextField } from "@material-ui/core";
 
 const styles = {
   paperStyle: {
-    height: "100px",
+    height: "30px",
     textAlign: "center",
     "&:hover": {
       opacity: "0.75",
@@ -26,6 +26,9 @@ const styles = {
     justifyContent: "center",
     textAlign: "center",
     paddingBottom: "10px",
+  },
+  column: {
+    padding: "5px",
   },
 };
 
@@ -44,77 +47,73 @@ function CoreStats(props) {
 
   return (
     <Grid container spacing={2}>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              Health
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.health}
-            </Box>
-          </Typography>
-        </Paper>
+      <Grid
+        container
+        direction="row"
+        xs={4}
+        spacing={1}
+        className={classes.column}
+      >
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>Health: {props.values.health}</Box>
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>AC: {props.values.ac}</Box>
+            </Typography>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              AC
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.ac}
-            </Box>
-          </Typography>
-        </Paper>
+      <Grid
+        container
+        direction="row"
+        xs={4}
+        spacing={1}
+        className={classes.column}
+      >
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>Hit Die: {props.values.hit_die}</Box>
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>Initiative: {props.values.initiative}</Box>
+            </Typography>
+          </Paper>
+        </Grid>
       </Grid>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              Hit Die
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.hit_die}
-            </Box>
-          </Typography>
-        </Paper>
-      </Grid>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              Initiative
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.initiative}
-            </Box>
-          </Typography>
-        </Paper>
-      </Grid>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              Movement
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.movement}
-            </Box>
-          </Typography>
-        </Paper>
-      </Grid>
-      <Grid item xs={2}>
-        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
-          <Typography>
-            <Box fontWeight={600} lineHeight={3}>
-              Proficiency
-            </Box>
-            <Box fontWeight={600} lineHeight={2}>
-              {props.values.proficiency}
-            </Box>
-          </Typography>
-        </Paper>
+      <Grid
+        container
+        direction="row"
+        xs={4}
+        spacing={1}
+        className={classes.column}
+      >
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>Movement: {props.values.movement}</Box>
+            </Typography>
+          </Paper>
+        </Grid>
+        <Grid item xs={12}>
+          <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+            <Typography>
+              <Box fontWeight={600}>
+                Proficiency: {props.values.proficiency}
+              </Box>
+            </Typography>
+          </Paper>
+        </Grid>
       </Grid>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle className={classes.title}>
