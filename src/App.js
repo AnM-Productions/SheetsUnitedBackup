@@ -68,6 +68,7 @@ export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
+  const [name, setName] = useState("")
   const [disabled, setDisabled] = useState({
     perception: true,
     survival: true,
@@ -155,6 +156,11 @@ export default function App() {
   const fadeLogin = () => {
     setLogin((prev) => !prev);
   };
+
+  const changeName = (props) => {
+    setName(props);
+    console.log(name)
+  }
 
   const handleChange = (props) => (event) => {
     setValues({ ...values, [props]: event.target.value });
@@ -292,7 +298,7 @@ export default function App() {
           alightItems="center"
           spacing={0}
         >
-          <Login fadeLogin={fadeLogin}></Login>
+          <Login fadeLogin={fadeLogin} changeName={changeName}></Login>
         </Grid>
       </Fade>
     </div>

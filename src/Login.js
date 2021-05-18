@@ -43,6 +43,8 @@ const styles = {
   },
 };
 
+const {REACT_APP_FUNCTION_KEY} = process.env
+
 function Login(props) {
     const [password, setPassword] = useState("")
     const [username, setUsername] = useState("")
@@ -56,10 +58,11 @@ function Login(props) {
     }
 
     const loginAttempt = async () =>{
-        var url = `https://postaccount.azurewebsites.net/api/get?code=CMEaxUZvVEkaRV/ryWPZcTIwZKwFRbN/63JMwJmJXryOyLtrCV8WGw==?id=${username}&details=${password}`
+        var url = `https://postaccount.azurewebsites.net/api/get?code=${REACT_APP_FUNCTION_KEY}&id=${username}&details=${password}`
         var result = await axios.get(url)
             .then((response) => {
-                console.log(response)
+                props.fadeLogin()
+                props.changeName(username)
             })
             .catch((error) => {
                 console.log(error)
@@ -77,7 +80,6 @@ function Login(props) {
             <TextField label="password" className={classes.loginField} onChange={changePassword}></TextField>
             <Button
                 variant="contained"
-                onClick={props.fadeLogin}
                 className={classes.loginSubmit}
                 onClick={loginAttempt}
             >
