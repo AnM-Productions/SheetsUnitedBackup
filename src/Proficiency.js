@@ -25,7 +25,7 @@ const styles = {
     width: "20%",
   },
   formContainer: {
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   paperStyle: {
     paddingLeft: "5px",
@@ -502,8 +502,8 @@ function Proficiency(props) {
                 </FormControl>
               </FormGroup>
               <FormGroup>
-              <FormLabel className={classes.attrName}>Dexterity</FormLabel>
-              <FormControl className={classes.formContainer}>
+                <FormLabel className={classes.attrName}>Dexterity</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
@@ -527,34 +527,33 @@ function Proficiency(props) {
                     />
                   </FormGroup>
                 </FormControl>
-              <FormControl className={classes.formContainer}>
-                
                 <FormControl className={classes.formContainer}>
-                <FormGroup row="false">
-                    <FormControlLabel
-                      className={classes.checkbox}
-                      control={
-                        <Checkbox
-                          onChange={props.handleSingleChange("acrobatics")}
-                        />
-                      }
-                      labelPlacement="start"
-                      label="Acrobatics"
-                    />
-                    <FormControlLabel
-                      className={classes.checkbox2}
-                      control={
-                        <Checkbox
-                          checked={props.checked}
-                          disabled={props.disabled.acrobatics}
-                          onChange={props.handleDoubleChange("acrobatics")}
-                        />
-                      }
-                    />
+                  <FormControl className={classes.formContainer}>
+                    <FormGroup row="false">
+                      <FormControlLabel
+                        className={classes.checkbox}
+                        control={
+                          <Checkbox
+                            onChange={props.handleSingleChange("acrobatics")}
+                          />
+                        }
+                        labelPlacement="start"
+                        label="Acrobatics"
+                      />
+                      <FormControlLabel
+                        className={classes.checkbox2}
+                        control={
+                          <Checkbox
+                            checked={props.checked}
+                            disabled={props.disabled.acrobatics}
+                            onChange={props.handleDoubleChange("acrobatics")}
+                          />
+                        }
+                      />
                     </FormGroup>
-                </FormControl> 
-              </FormControl>
-              <FormControl className={classes.formContainer}>
+                  </FormControl>
+                </FormControl>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
@@ -578,7 +577,7 @@ function Proficiency(props) {
                     />
                   </FormGroup>
                 </FormControl>
-                </FormGroup>
+              </FormGroup>
               <FormGroup>
                 <FormLabel className={classes.attrName}>Charisma</FormLabel>
                 <FormControl className={classes.formContainer}>
