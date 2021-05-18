@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Paper,
   Typography,
@@ -8,6 +8,7 @@ import {
   Grid,
   Divider
 } from "@material-ui/core";
+import axios from "axios";
 
 const styles = {
   loginPage: {
@@ -17,13 +18,15 @@ const styles = {
     justifyContent: "center",
     flexWrap: "wrap",
     width: "40%",
+    minWidth: "400px"
   },
   loginContainer: {
-      justifyContent: "space-around"
+      justifyContent: "space-around",
   },
   loginItem: {
     display: "flex",
     justifyContent: "center",
+    alignItems: "space-between",
     flexWrap: "wrap",
     padding: "2px"
   },
@@ -32,6 +35,7 @@ const styles = {
     backgroundColor: "#4285F4",
     color: "white",
     margin: "5px",
+    height: "4em"
   },
   loginField: {
     width: "80%",
@@ -40,6 +44,28 @@ const styles = {
 };
 
 function Login(props) {
+    const [password, setPassword] = useState("")
+    const [username, setUsername] = useState("")
+
+    const changeUsername = (event) => {
+        setUsername(event.target.value)
+    }
+
+    const changePassword = (event) => {
+        setPassword(event.target.value)
+    }
+
+    const loginAttempt = async () =>{
+        var url = `https://postaccount.azurewebsites.net/api/get?code=CMEaxUZvVEkaRV/ryWPZcTIwZKwFRbN/63JMwJmJXryOyLtrCV8WGw==?id=${username}&details=${password}`
+        var result = await axios.get(url)
+            .then((response) => {
+                console.log(response)
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+    }
+
   const { classes } = props;
 
   return (
@@ -47,12 +73,13 @@ function Login(props) {
       <Grid container spacing={0} className={classes.loginContainer}>
         <Grid item xs={5} className={classes.loginItem}>
             <Typography variant="h5">Please enter your credentials</Typography>
-            <TextField label="username" className={classes.loginField}></TextField>
-            <TextField label="password" className={classes.loginField}></TextField>
+            <TextField label="username" className={classes.loginField} onChange={changeUsername}></TextField>
+            <TextField label="password" className={classes.loginField} onChange={changePassword}></TextField>
             <Button
                 variant="contained"
                 onClick={props.fadeLogin}
                 className={classes.loginSubmit}
+                onClick={loginAttempt}
             >
                 Enter
             </Button>

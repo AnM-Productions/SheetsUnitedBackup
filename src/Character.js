@@ -87,7 +87,6 @@ function Character(props) {
               <Proficiency
                 values={props.values}
                 disabled={props.disabled}
-                checked={props.checked}
                 handleSingleChange={props.handleSingleChange}
                 handleDoubleChange={props.handleDoubleChange}
               ></Proficiency>
