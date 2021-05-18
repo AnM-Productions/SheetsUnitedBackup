@@ -16,8 +16,16 @@ const styles = {
     padding: "5px",
   },
   checkbox: {
-    padding: "10px",
-    maxWidth: "50%",
+    padding: "2%",
+    width: "65%",
+    justifyContent: "space-between",
+  },
+  checkbox2: {
+    padding: "2%",
+    width: "20%",
+  },
+  formContainer: {
+    justifyContent: "space-between"
   },
   paperStyle: {
     paddingLeft: "5px",
@@ -30,6 +38,7 @@ const styles = {
     textAlign: "center",
     fontSize: "20px",
     fontWeight: "600",
+    padding: "5px",
   },
   dialogContainer: {
     display: "flex",
@@ -216,8 +225,8 @@ function Proficiency(props) {
           <Grid className={classes.field} item xs={6}>
             <FormControl>
               <FormGroup>
-                <FormLabel className={classes.field}>Wisdom</FormLabel>
-                <FormControl className={classes.formGroup}>
+                <FormLabel className={classes.attrName}>Wisdom</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
@@ -230,7 +239,7 @@ function Proficiency(props) {
                       label="Perception"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
+                      className={classes.checkbox2}
                       control={
                         <Checkbox
                           checked={props.checked}
@@ -241,137 +250,222 @@ function Proficiency(props) {
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
-                    <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
-                      labelPlacement="start"
-                      label="Perception"
-                    />
                     <FormControlLabel
                       className={classes.checkbox}
                       control={
                         <Checkbox
+                          onChange={props.handleSingleChange("insight")}
+                        />
+                      }
+                      labelPlacement="start"
+                      label="Insight"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
                           disabled={props.disabled}
-                          onChange={props.handleDoubleChange}
+                          onChange={props.handleDoubleChange("insight")}
                         />
                       }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("survival")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Survival"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("survival")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("medicine")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Medicine"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("medicine")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("animal handling")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Animal Handling"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("animal handling")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
               </FormGroup>
               <FormGroup>
-                <FormLabel className={classes.field}>Intelligence</FormLabel>
-                <FormControl className={classes.formGroup}>
+                <FormLabel className={classes.attrName}>Intelligence</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("investigation")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Investigation"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("investigation")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("arcana")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Arcana"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("arcana")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("history")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="History"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("history")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("religion")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Religion"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("religion")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("nature")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Nature"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("nature")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
@@ -381,120 +475,205 @@ function Proficiency(props) {
           <Grid className={classes.field} item xs={6}>
             <FormControl>
               <FormGroup>
-                <FormLabel className={classes.field}>Strength</FormLabel>
-                <FormControl className={classes.formGroup}>
+                <FormLabel className={classes.attrName}>Strength</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("athletics")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Athletics"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("athletics")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
               </FormGroup>
-              <FormLabel className={classes.field}>Dexterity</FormLabel>
-              <FormControl className={classes.formGroup}>
-                <FormGroup row="false">
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                    labelPlacement="start"
-                    label="Perception"
-                  />
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                  />
-                </FormGroup>
-              </FormControl>
-              <FormControl className={classes.formGroup}>
-                <FormGroup row="false">
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                    labelPlacement="start"
-                    label="Perception"
-                  />
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                  />
-                </FormGroup>
-              </FormControl>
-              <FormControl className={classes.formGroup}>
-                <FormGroup row="false">
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                    labelPlacement="start"
-                    label="Perception"
-                  />
-                  <FormControlLabel
-                    className={classes.checkbox}
-                    control={<Checkbox />}
-                  />
-                </FormGroup>
-              </FormControl>
               <FormGroup>
-                <FormLabel>Charisma</FormLabel>
-                <FormControl className={classes.formGroup}>
+              <FormLabel className={classes.attrName}>Dexterity</FormLabel>
+              <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("stealth")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Stealth"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("stealth")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+              <FormControl className={classes.formContainer}>
+                
+                <FormControl className={classes.formContainer}>
+                <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("acrobatics")}
+                        />
+                      }
+                      labelPlacement="start"
+                      label="Acrobatics"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("acrobatics")}
+                        />
+                      }
+                    />
+                    </FormGroup>
+                </FormControl> 
+              </FormControl>
+              <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("sleight of hand")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Sleight of Hand"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("sleight of hand")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                </FormGroup>
+              <FormGroup>
+                <FormLabel className={classes.attrName}>Charisma</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("persuasion")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Persuasion"
                     />
                     <FormControlLabel
-                      className={classes.checkbox}
-                      control={<Checkbox />}
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("persuasion")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
-                <FormControl className={classes.formGroup}>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("deception")}
+                        />
+                      }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Deception"
                     />
                     <FormControlLabel
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("deception")}
+                        />
+                      }
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formContainer}>
+                  <FormGroup row="false">
+                    <FormControlLabel
                       className={classes.checkbox}
-                      control={<Checkbox />}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("intimidation")}
+                        />
+                      }
+                      labelPlacement="start"
+                      label="Intimidation"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("intimidation")}
+                        />
+                      }
+                    />
+                  </FormGroup>
+                </FormControl>
+                <FormControl className={classes.formContainer}>
+                  <FormGroup row="false">
+                    <FormControlLabel
+                      className={classes.checkbox}
+                      control={
+                        <Checkbox
+                          onChange={props.handleSingleChange("performance")}
+                        />
+                      }
+                      labelPlacement="start"
+                      label="Performance"
+                    />
+                    <FormControlLabel
+                      className={classes.checkbox2}
+                      control={
+                        <Checkbox
+                          checked={props.checked}
+                          disabled={props.disabled}
+                          onChange={props.handleDoubleChange("performance")}
+                        />
+                      }
                     />
                   </FormGroup>
                 </FormControl>
