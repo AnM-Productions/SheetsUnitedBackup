@@ -25,7 +25,7 @@ const styles = {
     width: "20%",
   },
   formContainer: {
-    justifyContent: "space-between"
+    justifyContent: "space-between",
   },
   paperStyle: {
     paddingLeft: "5px",
@@ -242,7 +242,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.perception}
                           onChange={props.handleDoubleChange("perception")}
                         />
@@ -266,7 +265,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.insight}
                           onChange={props.handleDoubleChange("insight")}
                         />
@@ -290,7 +288,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.survival}
                           onChange={props.handleDoubleChange("survival")}
                         />
@@ -314,7 +311,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.medicine}
                           onChange={props.handleDoubleChange("medicine")}
                         />
@@ -338,7 +334,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.animalHandling}
                           onChange={props.handleDoubleChange("animalHandling")}
                         />
@@ -365,7 +360,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.investigation}
                           onChange={props.handleDoubleChange("investigation")}
                         />
@@ -389,7 +383,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.arcana}
                           onChange={props.handleDoubleChange("arcana")}
                         />
@@ -413,7 +406,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.history}
                           onChange={props.handleDoubleChange("history")}
                         />
@@ -437,7 +429,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.religion}
                           onChange={props.handleDoubleChange("religion")}
                         />
@@ -461,7 +452,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.nature}
                           onChange={props.handleDoubleChange("nature")}
                         />
@@ -492,7 +482,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.athletics}
                           onChange={props.handleDoubleChange("athletics")}
                         />
@@ -502,8 +491,8 @@ function Proficiency(props) {
                 </FormControl>
               </FormGroup>
               <FormGroup>
-              <FormLabel className={classes.attrName}>Dexterity</FormLabel>
-              <FormControl className={classes.formContainer}>
+                <FormLabel className={classes.attrName}>Dexterity</FormLabel>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
@@ -519,7 +508,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.stealth}
                           onChange={props.handleDoubleChange("stealth")}
                         />
@@ -527,34 +515,32 @@ function Proficiency(props) {
                     />
                   </FormGroup>
                 </FormControl>
-              <FormControl className={classes.formContainer}>
-                
                 <FormControl className={classes.formContainer}>
-                <FormGroup row="false">
-                    <FormControlLabel
-                      className={classes.checkbox}
-                      control={
-                        <Checkbox
-                          onChange={props.handleSingleChange("acrobatics")}
-                        />
-                      }
-                      labelPlacement="start"
-                      label="Acrobatics"
-                    />
-                    <FormControlLabel
-                      className={classes.checkbox2}
-                      control={
-                        <Checkbox
-                          checked={props.checked}
-                          disabled={props.disabled.acrobatics}
-                          onChange={props.handleDoubleChange("acrobatics")}
-                        />
-                      }
-                    />
+                  <FormControl className={classes.formContainer}>
+                    <FormGroup row="false">
+                      <FormControlLabel
+                        className={classes.checkbox}
+                        control={
+                          <Checkbox
+                            onChange={props.handleSingleChange("acrobatics")}
+                          />
+                        }
+                        labelPlacement="start"
+                        label="Acrobatics"
+                      />
+                      <FormControlLabel
+                        className={classes.checkbox2}
+                        control={
+                          <Checkbox
+                            disabled={props.disabled.acrobatics}
+                            onChange={props.handleDoubleChange("acrobatics")}
+                          />
+                        }
+                      />
                     </FormGroup>
-                </FormControl> 
-              </FormControl>
-              <FormControl className={classes.formContainer}>
+                  </FormControl>
+                </FormControl>
+                <FormControl className={classes.formContainer}>
                   <FormGroup row="false">
                     <FormControlLabel
                       className={classes.checkbox}
@@ -570,7 +556,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.sleightOfHand}
                           onChange={props.handleDoubleChange("sleight of hand")}
                         />
@@ -578,7 +563,7 @@ function Proficiency(props) {
                     />
                   </FormGroup>
                 </FormControl>
-                </FormGroup>
+              </FormGroup>
               <FormGroup>
                 <FormLabel className={classes.attrName}>Charisma</FormLabel>
                 <FormControl className={classes.formContainer}>
@@ -597,7 +582,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.persuasion}
                           onChange={props.handleDoubleChange("persuasion")}
                         />
@@ -621,7 +605,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.deception}
                           onChange={props.handleDoubleChange("deception")}
                         />
@@ -645,7 +628,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.intimidation}
                           onChange={props.handleDoubleChange("intimidation")}
                         />
@@ -669,7 +651,6 @@ function Proficiency(props) {
                       className={classes.checkbox2}
                       control={
                         <Checkbox
-                          checked={props.checked}
                           disabled={props.disabled.performance}
                           onChange={props.handleDoubleChange("performance")}
                         />
