@@ -68,7 +68,26 @@ export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
-  const [disabled, setDisabled] = useState(true);
+  const [disabled, setDisabled] = useState({
+    perception: true,
+    survival: true,
+    insight: true,
+    medicine: true,
+    animalHandling: true,
+    arcana: true,
+    investigation: true,
+    religion: true,
+    nature: true,
+    history: true,
+    athletics: true,
+    acrobatic: true,
+    stealth: true,
+    sleightOfHand: true,
+    persuasion: true,
+    intimidation: true,
+    deception: true,
+    performance: true,
+  });
   const [checked, setChecked] = useState(true);
   const [values, setValues] = useState({
     health: "0",
@@ -147,16 +166,17 @@ export default function App() {
      * or they individually call save functions. */
     console.log("Saved");
   };
+
   const handleSingleChange = (props) => (event) => {
     console.log("clicked!");
     if (event.target.checked) {
       setValues({ ...values, [props]: 1 });
-      setDisabled(false);
+      setDisabled({ ...disabled, [props]: false });
       console.log(`Single change called. Value of disabled ${disabled}`);
     } else {
       setValues({ ...values, [props]: 0 });
       setChecked(false);
-      setDisabled(true);
+      setDisabled({ ...disabled, [props]: true });
       console.log(
         `single changed called, box unchecked, value of disabled ${disabled}`
       );

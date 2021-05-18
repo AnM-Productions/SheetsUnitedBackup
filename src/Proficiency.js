@@ -243,7 +243,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.perception}
                           onChange={props.handleDoubleChange("perception")}
                         />
                       }
@@ -267,7 +267,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.insight}
                           onChange={props.handleDoubleChange("insight")}
                         />
                       }
@@ -291,7 +291,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.survival}
                           onChange={props.handleDoubleChange("survival")}
                         />
                       }
@@ -315,7 +315,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.medicine}
                           onChange={props.handleDoubleChange("medicine")}
                         />
                       }
@@ -328,7 +328,7 @@ function Proficiency(props) {
                       className={classes.checkbox}
                       control={
                         <Checkbox
-                          onChange={props.handleSingleChange("animal handling")}
+                          onChange={props.handleSingleChange("animalHandling")}
                         />
                       }
                       labelPlacement="start"
@@ -339,8 +339,8 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
-                          onChange={props.handleDoubleChange("animal handling")}
+                          disabled={props.disabled.animalHandling}
+                          onChange={props.handleDoubleChange("animalHandling")}
                         />
                       }
                     />
@@ -366,7 +366,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.investigation}
                           onChange={props.handleDoubleChange("investigation")}
                         />
                       }
@@ -390,7 +390,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.arcana}
                           onChange={props.handleDoubleChange("arcana")}
                         />
                       }
@@ -414,7 +414,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.history}
                           onChange={props.handleDoubleChange("history")}
                         />
                       }
@@ -438,7 +438,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.religion}
                           onChange={props.handleDoubleChange("religion")}
                         />
                       }
@@ -462,7 +462,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.nature}
                           onChange={props.handleDoubleChange("nature")}
                         />
                       }
@@ -493,7 +493,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.athletics}
                           onChange={props.handleDoubleChange("athletics")}
                         />
                       }
@@ -520,7 +520,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.stealth}
                           onChange={props.handleDoubleChange("stealth")}
                         />
                       }
@@ -546,7 +546,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.acrobatics}
                           onChange={props.handleDoubleChange("acrobatics")}
                         />
                       }
@@ -560,7 +560,7 @@ function Proficiency(props) {
                       className={classes.checkbox}
                       control={
                         <Checkbox
-                          onChange={props.handleSingleChange("sleight of hand")}
+                          onChange={props.handleSingleChange("sleightOfHand")}
                         />
                       }
                       labelPlacement="start"
@@ -571,7 +571,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.sleightOfHand}
                           onChange={props.handleDoubleChange("sleight of hand")}
                         />
                       }
@@ -598,7 +598,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.persuasion}
                           onChange={props.handleDoubleChange("persuasion")}
                         />
                       }
@@ -622,7 +622,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.deception}
                           onChange={props.handleDoubleChange("deception")}
                         />
                       }
@@ -646,7 +646,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.intimidation}
                           onChange={props.handleDoubleChange("intimidation")}
                         />
                       }
@@ -670,7 +670,7 @@ function Proficiency(props) {
                       control={
                         <Checkbox
                           checked={props.checked}
-                          disabled={props.disabled}
+                          disabled={props.disabled.performance}
                           onChange={props.handleDoubleChange("performance")}
                         />
                       }
