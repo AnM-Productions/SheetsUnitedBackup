@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Dialog, Grid, Button, Typography, Box } from "@material-ui/core";
 import CasinoIcon from "@material-ui/icons/Casino";
+import React, { useState } from "react";
+import { Dialog, Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { DialogTitle } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
-import rolld20 from "./dice";
 
 const styles = {
   field: {
@@ -24,14 +25,6 @@ const styles = {
   paperStyle: {
     // height: "100px",
     textAlign: "center",
-    "&:hover": {
-      opacity: "0.75",
-    },
-  },
-  sectionTitle: {
-    margin: "0px 0px 0px 0px",
-    padding: "0px 5px 0px 5px",
-    height: "30px",
     "&:hover": {
       opacity: "0.75",
     },
@@ -323,15 +316,6 @@ function Stat(props) {
               </Grid>
             </Grid>
           </Grid>
-        </Paper>
-      </Grid>
-      <Grid item xs={12}>
-        <Paper onClick={handleClickOpen} className={classes.sectionTitle}>
-          <Typography align="center" className={classes.attrName}>
-            <Box component="span" textAlign="center" display="inline">
-              Edit Stats
-            </Box>
-          </Typography>
         </Paper>
       </Grid>
     </Grid>

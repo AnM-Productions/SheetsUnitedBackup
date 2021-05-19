@@ -68,6 +68,7 @@ export default function App() {
   const [anchorEl, setAnchorEl] = useState(null);
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
+  const [name, setName] = useState("")
   const [disabled, setDisabled] = useState({
     perception: true,
     survival: true,
@@ -80,7 +81,7 @@ export default function App() {
     nature: true,
     history: true,
     athletics: true,
-    acrobatics: true,
+    acrobatic: true,
     stealth: true,
     sleightOfHand: true,
     persuasion: true,
@@ -114,7 +115,7 @@ export default function App() {
     nature: "0",
     history: "0",
     athletics: "0",
-    acrobatics: "0",
+    acrobatic: "0",
     stealth: "0",
     sleightOfHand: "0",
     persuasion: "0",
@@ -156,6 +157,11 @@ export default function App() {
     setLogin((prev) => !prev);
   };
 
+  const changeName = (props) => {
+    setName(props);
+    console.log(name)
+  }
+
   const handleChange = (props) => (event) => {
     setValues({ ...values, [props]: event.target.value });
   };
@@ -175,7 +181,7 @@ export default function App() {
       console.log(`Single change called. Value of disabled ${disabled}`);
     } else {
       setValues({ ...values, [props]: 0 });
-      setChecked(false);
+      //setChecked({ ...checked, [props]: false });
       setDisabled({ ...disabled, [props]: true });
       console.log(
         `single changed called, box unchecked, value of disabled ${disabled}`
@@ -292,7 +298,7 @@ export default function App() {
           alightItems="center"
           spacing={0}
         >
-          <Login fadeLogin={fadeLogin}></Login>
+          <Login fadeLogin={fadeLogin} changeName={changeName}></Login>
         </Grid>
       </Fade>
     </div>

@@ -90,7 +90,6 @@ function Character(props) {
                 values={props.values}
                 mods={props.mods}
                 disabled={props.disabled}
-                checked={props.checked}
                 handleSingleChange={props.handleSingleChange}
                 handleDoubleChange={props.handleDoubleChange}
               ></Proficiency>
