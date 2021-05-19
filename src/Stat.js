@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Dialog, Grid, Button, Typography, Box } from "@material-ui/core";
 import CasinoIcon from "@material-ui/icons/Casino";
-import React, { useState } from "react";
-import { Dialog, Grid } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { DialogTitle } from "@material-ui/core";
 import { TextField } from "@material-ui/core";
+import rolld20 from "./dice";
 
 const styles = {
   field: {
