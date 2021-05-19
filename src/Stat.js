@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Dialog, Grid, Button, Typography, Box } from "@material-ui/core";
+import {
+  Dialog,
+  Grid,
+  Button,
+  IconButton,
+  Typography,
+  Box,
+} from "@material-ui/core";
 import CasinoIcon from "@material-ui/icons/Casino";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
@@ -93,16 +100,15 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave("Dexterity Saving Throw", props.mods.dexterity)
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -168,7 +174,7 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave(
@@ -177,10 +183,9 @@ function Stat(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -203,16 +208,15 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave("Strength Saving Throw", props.mods.strength)
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -235,16 +239,15 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave("Wisdom Saving Throw", props.mods.wisdom)
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -267,7 +270,7 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave(
@@ -276,10 +279,9 @@ function Stat(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>
@@ -302,16 +304,15 @@ function Stat(props) {
                 Save: 0
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollSave("Charisma Saving Throw", props.mods.charisma)
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Grid>

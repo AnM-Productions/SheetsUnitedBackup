@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Box, Button, Typography } from "@material-ui/core";
+import { Grid, Box, Button, IconButton, Typography } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Dialog, DialogTitle } from "@material-ui/core";
@@ -113,7 +113,7 @@ function Proficiency(props) {
                   props.values.perception,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -124,10 +124,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />{" "}
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Survival
@@ -141,7 +140,7 @@ function Proficiency(props) {
                   props.values.survival,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -152,10 +151,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Insight{" "}
@@ -169,7 +167,7 @@ function Proficiency(props) {
                   props.values.insight,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -180,10 +178,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Medicine{" "}
@@ -197,7 +194,7 @@ function Proficiency(props) {
                   props.values.medicine,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -208,10 +205,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Animal Handling{" "}
@@ -225,7 +221,7 @@ function Proficiency(props) {
                   props.values.animalHandling,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -236,10 +232,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Paper>
@@ -262,7 +257,7 @@ function Proficiency(props) {
                   props.values.arcana,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -273,10 +268,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Investigation{" "}
@@ -290,7 +284,7 @@ function Proficiency(props) {
                   props.values.investigation,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -301,10 +295,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Religion{" "}
@@ -318,7 +311,7 @@ function Proficiency(props) {
                   props.values.religion,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -329,10 +322,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Nature{" "}
@@ -346,7 +338,7 @@ function Proficiency(props) {
                   props.values.nature,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -357,10 +349,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 History{" "}
@@ -374,7 +365,7 @@ function Proficiency(props) {
                   props.values.history,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -385,10 +376,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Paper>
@@ -413,7 +403,7 @@ function Proficiency(props) {
                   props.values.athletics,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -424,10 +414,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Paper>
@@ -450,7 +439,7 @@ function Proficiency(props) {
                   props.values.acrobatics,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -461,10 +450,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Stealth{" "}
@@ -478,7 +466,7 @@ function Proficiency(props) {
                   props.values.stealth,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -489,10 +477,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Sleight of Hand{" "}
@@ -506,7 +493,7 @@ function Proficiency(props) {
                   props.values.sleightOfHand,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -517,10 +504,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Paper>
@@ -543,7 +529,7 @@ function Proficiency(props) {
                   props.values.persuasion,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -554,10 +540,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Intimidation{" "}
@@ -571,7 +556,7 @@ function Proficiency(props) {
                   props.values.intimidation,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -582,10 +567,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Deception{" "}
@@ -599,7 +583,7 @@ function Proficiency(props) {
                   props.values.deception,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -610,10 +594,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
               <Grid className={classes.field} item xs={7}>
                 Performance{" "}
@@ -627,7 +610,7 @@ function Proficiency(props) {
                   props.values.performance,
                   props.values.proficiency
                 )}
-                <Button
+                <IconButton
                   aria-label="roll dice"
                   onClick={() =>
                     rollCheck(
@@ -638,10 +621,9 @@ function Proficiency(props) {
                     )
                   }
                   size="small"
-                  endIcon={<CasinoIcon />}
                 >
-                  Roll
-                </Button>
+                  <CasinoIcon />
+                </IconButton>
               </Grid>
             </Grid>
           </Paper>
