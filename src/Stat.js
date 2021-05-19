@@ -317,6 +317,15 @@ function Stat(props) {
           </Grid>
         </Paper>
       </Grid>
+      <Grid item xs={12}>
+        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+          <Typography align="center" className={classes.attrName}>
+            <Box component="span" textAlign="center" display="inline">
+              Edit Stats
+            </Box>
+          </Typography>
+        </Paper>
+      </Grid>
     </Grid>
   );
 }

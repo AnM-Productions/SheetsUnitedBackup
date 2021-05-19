@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Grid, Box, Button } from "@material-ui/core";
+import { Grid, Box, Button, Typography } from "@material-ui/core";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
 import { Dialog, DialogTitle } from "@material-ui/core";
@@ -87,23 +87,32 @@ function Proficiency(props) {
     alert(rollmsg);
   }
 
+  function displaySkill(modifier, proficiency, profBonus) {
+    let total = parseInt(modifier) + proficiency * profBonus;
+    if (total >= 0) return `+${total}`;
+    else return `-${total}`;
+  }
   return (
     <Grid container spacing={0}>
       <Grid container xs={6}>
         <Grid item xs={12}>
-          <Paper className={classes.paperStyle} onClick={handleClickOpen}>
+          <Paper className={classes.paperStyle}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
                 Wisdom: {props.mods.wisdom}
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Perception
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.perception))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.wisdom,
+                  props.values.perception,
+                  props.values.proficiency
+                )}
                 <Button
                   aria-label="roll dice"
                   onClick={() =>
@@ -120,95 +129,266 @@ function Proficiency(props) {
                   Roll
                 </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Survival
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.survival))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.wisdom,
+                  props.values.survival,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Survival Check",
+                      props.values.survival,
+                      props.values.proficiency,
+                      props.mods.wisdom
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Insight{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.insight))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.wisdom,
+                  props.values.insight,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Insight Check",
+                      props.values.insight,
+                      props.values.proficiency,
+                      props.mods.wisdom
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Medicine{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.medicine))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.wisdom,
+                  props.values.medicine,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Perception Check",
+                      props.values.medicine,
+                      props.values.proficiency,
+                      props.mods.wisdom
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Animal Handling{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.animalHandling))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.wisdom,
+                  props.values.animalHandling,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Animal Handling Check",
+                      props.values.animalHandling,
+                      props.values.proficiency,
+                      props.mods.wisdom
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paperStyle} onClick={handleClickOpen}>
+          <Paper className={classes.paperStyle}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
                 Intelligence: {props.mods.intelligence}
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Arcana{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.arcana))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.intelligence,
+                  props.values.arcana,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Arcana Check",
+                      props.values.arcana,
+                      props.values.proficiency,
+                      props.mods.intelligence
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Investigation{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.investigation))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.intelligence,
+                  props.values.investigation,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Investigation Check",
+                      props.values.investigation,
+                      props.values.proficiency,
+                      props.mods.intelligence
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Religion{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.religion))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.intelligence,
+                  props.values.religion,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Religion Check",
+                      props.values.religion,
+                      props.values.proficiency,
+                      props.mods.intelligence
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Nature{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.nature))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.intelligence,
+                  props.values.nature,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Nature Check",
+                      props.values.nature,
+                      props.values.proficiency,
+                      props.mods.intelligence
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 History{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.history))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.intelligence,
+                  props.values.history,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "History Check",
+                      props.values.history,
+                      props.values.proficiency,
+                      props.mods.intelligence
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
             </Grid>
           </Paper>
@@ -216,104 +396,265 @@ function Proficiency(props) {
       </Grid>
       <Grid container xs={6}>
         <Grid item xs={12}>
-          <Paper className={classes.paperStyle} onClick={handleClickOpen}>
+          <Paper className={classes.paperStyle}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
                 Stength: {props.mods.strength}
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Athletics{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.athletics))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.strength,
+                  props.values.athletics,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Athletics Check",
+                      props.values.athletics,
+                      props.values.proficiency,
+                      props.mods.strength
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paperStyle} onClick={handleClickOpen}>
+          <Paper className={classes.paperStyle}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
                 Dexterity: {props.mods.dexterity}
               </Grid>
-              <Grid className={classes.field} item xs={8}>
-                Acrobatics{" "}
+              <Grid className={classes.field} item xs={7}>
+                Acrobatics{"\t"}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.acrobatics))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.dexterity,
+                  props.values.acrobatics,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Acrobatics Check",
+                      props.values.acrobatics,
+                      props.values.proficiency,
+                      props.mods.dexterity
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Stealth{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.stealth))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.dexterity,
+                  props.values.stealth,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Stealth Check",
+                      props.values.stealth,
+                      props.values.proficiency,
+                      props.mods.dexterity
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Sleight of Hand{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.sleightOfHand))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.dexterity,
+                  props.values.sleightOfHand,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Sleight of Hand Check",
+                      props.values.sleightOfHand,
+                      props.values.proficiency,
+                      props.mods.dexterity
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
         <Grid item xs={12}>
-          <Paper className={classes.paperStyle} onClick={handleClickOpen}>
+          <Paper className={classes.paperStyle}>
             <Grid container spacing={1}>
               <Grid className={classes.attrName} item xs={12}>
                 Charisma: {props.mods.charisma}
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Persuasion{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.persuasion))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.charisma,
+                  props.values.persuasion,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Investigation Check",
+                      props.values.persuasion,
+                      props.values.proficiency,
+                      props.mods.charisma
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Intimidation{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.intimidation))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.charisma,
+                  props.values.intimidation,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Intimidation Check",
+                      props.values.intimidation,
+                      props.values.proficiency,
+                      props.mods.charisma
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Deception{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.deception))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.charisma,
+                  props.values.deception,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Deception Check",
+                      props.values.deception,
+                      props.values.proficiency,
+                      props.mods.charisma
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
-              <Grid className={classes.field} item xs={8}>
+              <Grid className={classes.field} item xs={7}>
                 Performance{" "}
                 <Box component="span" className={classes.profDisclaimer}>
                   {proficiencyCheck(parseInt(props.values.performance))}
                 </Box>
               </Grid>
-              <Grid className={classes.field} item xs={4}>
-                0
+              <Grid className={classes.field} item xs={5}>
+                {displaySkill(
+                  props.mods.charisma,
+                  props.values.performance,
+                  props.values.proficiency
+                )}
+                <Button
+                  aria-label="roll dice"
+                  onClick={() =>
+                    rollCheck(
+                      "Performance Check",
+                      props.values.performance,
+                      props.values.proficiency,
+                      props.mods.charisma
+                    )
+                  }
+                  size="small"
+                  endIcon={<CasinoIcon />}
+                >
+                  Roll
+                </Button>
               </Grid>
             </Grid>
           </Paper>
         </Grid>
+      </Grid>
+      <Grid item xs={12}>
+        <Paper onClick={handleClickOpen} className={classes.paperStyle}>
+          <Typography align="center" className={classes.attrName}>
+            <Box component="span" textAlign="center" display="inline">
+              Edit Proficiencies
+            </Box>
+          </Typography>
+        </Paper>
       </Grid>
       <Dialog open={open} onClose={handleClose}>
         <DialogTitle className={classes.title}>Set Character Info</DialogTitle>
