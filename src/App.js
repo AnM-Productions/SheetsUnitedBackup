@@ -12,6 +12,7 @@ import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
 import Details from "./Details";
+import { setTokenSourceMapRange } from "typescript";
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -74,6 +75,7 @@ const useStyles = makeStyles((theme) => ({
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
+  const [name, setName] = useState("");
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
   const [disabled, setDisabled] = useState({
@@ -167,6 +169,10 @@ export default function App() {
   const handleChange = (props) => (event) => {
     setValues({ ...values, [props]: event.target.value });
   };
+
+  const changeName = (props) =>{
+    setName(props)
+  }
 
   const handleSave = () => {
     /* Pass up functions to character.js, corestats.js, details.js, stat.js
@@ -299,7 +305,7 @@ export default function App() {
           alightItems="center"
           spacing={0}
         >
-          <Login fadeLogin={fadeLogin}></Login>
+          <Login fadeLogin={fadeLogin} changeName={changeName}></Login>
         </Grid>
       </Fade>
     </div>
