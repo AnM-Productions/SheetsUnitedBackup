@@ -8,6 +8,7 @@ import { Menu } from "@material-ui/core";
 import { MenuItem } from "@material-ui/core";
 import { Button, IconButton } from "@material-ui/core";
 import { ArrowBack, LibraryBooks } from "@material-ui/icons";
+import MenuIcon from "@material-ui/icons/Menu";
 import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
@@ -170,9 +171,9 @@ export default function App() {
     setValues({ ...values, [props]: event.target.value });
   };
 
-  const changeName = (props) =>{
-    setName(props)
-  }
+  const changeName = (props) => {
+    setName(props);
+  };
 
   const handleSave = () => {
     /* Pass up functions to character.js, corestats.js, details.js, stat.js
@@ -224,6 +225,9 @@ export default function App() {
           <div class={classes.toolRight}>
             <IconButton variant="contained" onClick={swapDetails}>
               <LibraryBooks />
+            </IconButton>
+            <IconButton aria-label="menu" onClick={handleClick}>
+              <MenuIcon />
             </IconButton>
             <Button
               className={classes.classMenu}
