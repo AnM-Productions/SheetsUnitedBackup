@@ -66,16 +66,18 @@ function Character(props) {
         </Paper>
       </Grid>
       <Grid container xs={12} className={classes.gridRow} spacing={1}>
-        <Grid item xs={5} className={classes.stats}>
-          <Paper className={classes.card}>
-            <Stat
-              values={props.values}
-              mods={props.mods}
-              handleStatChange={props.handleStatChange}
-            ></Stat>
-          </Paper>
+        <Grid item sm={5} xs={12} className={classes.gridItem}>
+          <Grid item className={classes.stats}>
+            <Paper className={classes.card}>
+              <Stat
+                values={props.values}
+                mods={props.mods}
+                handleStatChange={props.handleStatChange}
+              ></Stat>
+            </Paper>
+          </Grid>
         </Grid>
-        <Grid item xs={7} className={classes.gridItem}>
+        <Grid item sm={7} xs={12} className={classes.gridItem}>
           <Grid item className={classes.stats}>
             <Paper className={classes.card}>
               <CoreStats

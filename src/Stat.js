@@ -1,12 +1,5 @@
 import React, { useEffect, useState } from "react";
-import {
-  Dialog,
-  Grid,
-  Button,
-  IconButton,
-  Typography,
-  Box,
-} from "@material-ui/core";
+import { Dialog, Grid, IconButton, Typography, Box } from "@material-ui/core";
 import CasinoIcon from "@material-ui/icons/Casino";
 import { Paper } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";

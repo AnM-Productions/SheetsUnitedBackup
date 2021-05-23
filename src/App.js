@@ -17,6 +17,14 @@ const useStyles = makeStyles((theme) => ({
   page: {
     position: "absolute",
   },
+  title: {
+    color: "#ffffff",
+    fontSize: "28px",
+    fontWeight: "500",
+    [theme.breakpoints.down("xs")]: {
+      fontSize: "14px",
+    },
+  },
   container: {
     display: "grid",
     girdGap: theme.spacing(3),
@@ -203,7 +211,7 @@ export default function App() {
             >
               <ArrowBack />
             </IconButton>
-            <Typography variant="h4" className={classes.title}>
+            <Typography variant="h1" className={classes.title}>
               Sheets United
             </Typography>
           </div>

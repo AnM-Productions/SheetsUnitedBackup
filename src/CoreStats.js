@@ -30,6 +30,10 @@ const styles = {
   column: {
     padding: "5px",
   },
+  gridHolder: {
+    alignContent: "center",
+    alignItems: "center",
+  },
 };
 
 function CoreStats(props) {
@@ -46,7 +50,7 @@ function CoreStats(props) {
   };
 
   return (
-    <Grid container spacing={2}>
+    <Grid container className={classes.gridHolder} spacing={2}>
       <Grid
         container
         direction="row"
