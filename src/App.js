@@ -5,9 +5,19 @@ import { Typography } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { Menu } from "@material-ui/core";
-import { MenuItem } from "@material-ui/core";
+import {
+  MenuItem,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  Collapse,
+} from "@material-ui/core";
 import { Button, IconButton } from "@material-ui/core";
 import { ArrowBack, LibraryBooks } from "@material-ui/icons";
+import ExpandLess from "@material-ui/icons/ExpandLess";
+import ExpandMore from "@material-ui/icons/ExpandMore";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Fade } from "@material-ui/core";
 import Character from "./Character";
@@ -23,9 +33,6 @@ const useStyles = makeStyles((theme) => ({
     color: "#ffffff",
     fontSize: "28px",
     fontWeight: "500",
-    [theme.breakpoints.down("xs")]: {
-      fontSize: "14px",
-    },
   },
   container: {
     display: "grid",
@@ -71,7 +78,27 @@ const useStyles = makeStyles((theme) => ({
   loginButton: {
     marginRight: "16px",
   },
+  drawer: {
+    width: 250,
+  },
+  sideDrawerItem: {},
+  nested: {
+    paddingLeft: "10px",
+  },
 }));
+
+function GetChars() {
+  const classes = useStyles();
+  // get characters of username from API, to be implemented.
+  // Return map list of all characters names. On click loads that name (later)
+  // ADD username arguments
+  const chars = ["Fighter", "Rogue", "Ranger", "Wizard"];
+  return chars.map((i) => (
+    <ListItem button className={classes.nested} paddingLeft="5px" key={`${i}`}>
+      <ListItemText primary={`${i}`} />
+    </ListItem>
+  ));
+}
 
 export default function App() {
   const classes = useStyles();
@@ -79,6 +106,8 @@ export default function App() {
   const [name, setName] = useState("");
   const [details, setDetails] = useState(false);
   const [login, setLogin] = useState(true);
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [options, setOptions] = useState(false);
   const [disabled, setDisabled] = useState({
     perception: true,
     survival: true,
@@ -171,6 +200,13 @@ export default function App() {
     setValues({ ...values, [props]: event.target.value });
   };
 
+  const handleDrawerOpen = () => {
+    setDrawerOpen((drawerOpen) => !drawerOpen);
+  };
+
+  const handleOptions = () => {
+    setOptions((options) => !options);
+  };
   const changeName = (props) => {
     setName(props);
   };
@@ -226,47 +262,43 @@ export default function App() {
             <IconButton variant="contained" onClick={swapDetails}>
               <LibraryBooks />
             </IconButton>
-            <IconButton aria-label="menu" onClick={handleClick}>
+            <IconButton aria-label="menu" onClick={handleDrawerOpen}>
               <MenuIcon />
             </IconButton>
-            <Button
-              className={classes.classMenu}
-              variant="contained"
-              onClick={handleSave}
-              edge="end"
-            >
-              Save Character
-            </Button>
-            <Button
-              className={classes.classMenu}
-              variant="contained"
-              onClick={handleClick}
-              edge="end"
-            >
-              Choose a Theme
-            </Button>
-            <Menu
-              anchorEl={anchorEl}
-              anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
-              keepMounted
-              transformOrigin={{ vertical: "top", horizontal: "center" }}
-              open={Boolean(anchorEl)}
-              onClose={handleMenuClose}
-            >
-              <MenuItem onClick={handleMenuClose}>Fighter</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Barbarian</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Paladin</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Ranger</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Rogue</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Monk</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Cleric</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Bard</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Wizard</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Sorcerer</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Warlock</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Druid</MenuItem>
-              <MenuItem onClick={handleMenuClose}>Artificer</MenuItem>
-            </Menu>
+            <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerOpen}>
+              <div role="presentation" class={classes.drawer}>
+                <List
+                  subheader={
+                    <ListSubheader component="div" id="menu-bar-subheader">
+                      Hello USERNAME HERE
+                    </ListSubheader>
+                  }
+                >
+                  <ListItem button key="Save Character">
+                    <ListItemText
+                      className={classes.sideDrawerItem}
+                      primary="Save Character"
+                      onClick={handleSave}
+                    />
+                  </ListItem>
+                  <ListItem button key="Choose Theme">
+                    <ListItemText
+                      className={classes.sideDrawerItem}
+                      primary="Show All Characters"
+                      onClick={handleOptions}
+                    />
+                    {options ? <ExpandLess /> : <ExpandMore />}
+                  </ListItem>
+                  <ListItem>
+                    <Collapse in={options} timeout="auto" unmountOnExit>
+                      <List component="div" disablePadding>
+                        {GetChars()}
+                      </List>
+                    </Collapse>
+                  </ListItem>
+                </List>
+              </div>
+            </Drawer>
           </div>
         </Toolbar>
       </AppBar>

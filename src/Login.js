@@ -11,8 +11,9 @@ import {
 } from "@material-ui/core";
 import { Alert } from "@material-ui/lab";
 import axios from "axios";
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 
-const styles = {
+const styles = (theme) => ({
   loginPage: {
     marginTop: "6em",
     padding: "10px",
@@ -20,7 +21,12 @@ const styles = {
     justifyContent: "center",
     flexWrap: "wrap",
     width: "40%",
-    minWidth: "400px",
+    [theme.breakpoints.down("xs")]: {
+      minWidth: "300px",
+      width: "80%",
+      marginTop: "1em",
+    },
+    minWidth: "430px",
   },
   loginContainer: {
     justifyContent: "space-around",
@@ -43,15 +49,24 @@ const styles = {
     width: "80%",
     marginBottom: "2em",
   },
-};
+});
 
 const { REACT_APP_GET_KEY, REACT_APP_POST_KEY } = process.env;
+
+function GenDivider() {
+  const vert = useMediaQuery("(max-width:600px)");
+  var or = "vertical";
+  if (vert === true) {
+    or = "horizontal";
+  }
+  return <Divider orientation={or}></Divider>;
+}
 
 function Login(props) {
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [confirm, setConfirm] = useState("");
-  const [collapsed, setCollapsed] = useState(0)
+  const [collapsed, setCollapsed] = useState(0);
 
   const changeUsername = (event) => {
     setUsername(event.target.value);
@@ -70,12 +85,12 @@ function Login(props) {
     var result = await axios
       .get(url)
       .then((response) => {
-        setCollapsed(0)
+        setCollapsed(0);
         props.fadeLogin();
         props.changeName(username);
       })
       .catch((error) => {
-        setCollapsed(1)
+        setCollapsed(1);
         console.log(error);
       });
   };
@@ -85,7 +100,7 @@ function Login(props) {
     var make = `https://postaccount.azurewebsites.net/api/post?code=${REACT_APP_POST_KEY}`;
     if (password != confirm) {
       result = "passwords do not match";
-      setCollapsed(2)
+      setCollapsed(2);
       return result;
     }
     async function post() {
@@ -93,19 +108,19 @@ function Login(props) {
         .get(check)
         .then(() => {
           result = "user already exists";
-          setCollapsed(3)
+          setCollapsed(3);
         })
         .catch((error) => {
           if (error.response.data.error == "false") {
             result = "user already exists";
-            setCollapsed(3)
+            setCollapsed(3);
           } else if (error.response.data.error == "does not exist") {
             async function create() {
               await axios
                 .post(make, { username: username, password: password })
                 .then((response) => {
                   result = response.data.response;
-                  setCollapsed(0)
+                  setCollapsed(0);
                   props.fadeLogin();
                   props.changeName(username);
                 })
@@ -129,7 +144,7 @@ function Login(props) {
   return (
     <Paper className={classes.loginPage}>
       <Grid container spacing={0} className={classes.loginContainer}>
-        <Grid item xs={5} className={classes.loginItem}>
+        <Grid item sm={5} xs={12} className={classes.loginItem}>
           <Typography variant="h5">Please enter your credentials</Typography>
           <TextField
             label="username"
@@ -152,8 +167,8 @@ function Login(props) {
             <Alert severity="error">Incorrect username or password</Alert>
           </Collapse>
         </Grid>
-        <Divider orientation="vertical"></Divider>
-        <Grid item xs={5} className={classes.loginItem}>
+        {GenDivider()}
+        <Grid item sm={5} xs={12} className={classes.loginItem}>
           <Typography variant="h5">Don't have an account yet?</Typography>
           <TextField
             label="new username"
