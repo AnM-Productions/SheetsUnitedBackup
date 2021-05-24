@@ -269,7 +269,7 @@ export default function App() {
                 <List
                   subheader={
                     <ListSubheader component="div" id="menu-bar-subheader">
-                      Hello USERNAME HERE
+                      Hello {name}!
                     </ListSubheader>
                   }
                 >
