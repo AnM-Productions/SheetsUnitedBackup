@@ -7,6 +7,8 @@ import Stat from "./Stat";
 import CoreStats from "./CoreStats";
 import Proficiency from "./Proficiency";
 import InfoBar from "./InfoBar";
+import { Fade } from "@material-ui/core";
+import Notes from "./Notes";
 
 const styles = {
   dialogContainer: {
@@ -50,6 +52,24 @@ const styles = {
   },
 };
 
+function ProfOrNotes(props) {
+  if (props.details === true) {
+    //return a notes object
+    return <Notes></Notes>;
+  } else {
+    // return proficiencies with all the props
+    return (
+      <Proficiency
+        values={props.values}
+        mods={props.mods}
+        disabled={props.disabled}
+        handleSingleChange={props.handleSingleChange}
+        handleDoubleChange={props.handleDoubleChange}
+      ></Proficiency>
+    );
+  }
+}
+
 function Character(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
@@ -87,15 +107,7 @@ function Character(props) {
             </Paper>
           </Grid>
           <Grid item className={classes.stats}>
-            <Paper className={classes.card}>
-              <Proficiency
-                values={props.values}
-                mods={props.mods}
-                disabled={props.disabled}
-                handleSingleChange={props.handleSingleChange}
-                handleDoubleChange={props.handleDoubleChange}
-              ></Proficiency>
-            </Paper>
+            <Paper className={classes.card}>{ProfOrNotes(props)}</Paper>
           </Grid>
         </Grid>
       </Grid>

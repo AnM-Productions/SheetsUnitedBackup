@@ -4,9 +4,7 @@ import { AppBar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
 import { Toolbar } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
-import { Menu } from "@material-ui/core";
 import {
-  MenuItem,
   Drawer,
   List,
   ListItem,
@@ -14,7 +12,7 @@ import {
   ListSubheader,
   Collapse,
 } from "@material-ui/core";
-import { Button, IconButton } from "@material-ui/core";
+import { IconButton } from "@material-ui/core";
 import { ArrowBack, LibraryBooks } from "@material-ui/icons";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
@@ -189,6 +187,7 @@ export default function App() {
   };
 
   const swapDetails = () => {
+    console.log(details);
     setDetails((prev) => !prev);
   };
 
@@ -302,7 +301,7 @@ export default function App() {
           </div>
         </Toolbar>
       </AppBar>
-      <Fade in={!details & !login}>
+      <Fade in={!login}>
         <Grid
           className={classes.page}
           container
@@ -315,6 +314,7 @@ export default function App() {
             mods={mods}
             disabled={disabled}
             checked={checked}
+            details={details}
             handleChange={handleChange}
             handleStatChange={handleStatChange}
             handleSingleChange={handleSingleChange}
@@ -322,7 +322,7 @@ export default function App() {
           ></Character>
         </Grid>
       </Fade>
-      <Fade in={details & !login}>
+      {/* <Fade in={details & !login}>
         <Grid
           className={classes.page}
           container
@@ -332,7 +332,7 @@ export default function App() {
         >
           <Details></Details>
         </Grid>
-      </Fade>
+      </Fade> */}
       <Fade in={login}>
         <Grid
           className={classes.page}
