@@ -36,6 +36,10 @@ const styles = {
     textAlign: "center",
     paddingBottom: "10px",
   },
+  list: {
+    maxHeight: "260px",
+    overflow: "auto"
+  }
 };
 
 function TabPanel(props) {
@@ -112,7 +116,10 @@ function FetchData(props) {
           <List>
             {query2.map((i) => (
               <ListItem button key={`${i.index}`}>
-                <ListItemText primary={`${i.name}`} />
+                <ListItemText primary={`${i.name}`} onClick={(event) => 
+                  {event.stopPropagation()
+                  props.addEquipment(`${i.name}`)
+                  }}/>
               </ListItem>
             ))}
           </List>
@@ -144,7 +151,7 @@ function FetchCategories(props) {
     <List>
       {query.map((i) => (
         <ListItem button key={`${i.index}`}>
-          <FetchData url={`${props.url}/${i.index}`} name={i.name} />
+          <FetchData url={`${props.url}/${i.index}`} name={i.name} addEquipment={props.addEquipment}/>
         </ListItem>
       ))}
     </List>
@@ -162,7 +169,7 @@ function FetchSpells(props) {
     <List>
       {levels.map((i) => (
         <ListItem button key={`spells-level-${i}`}>
-          <FetchSpellLevels url={`${props.url}${i}`} name={`Level: ${i}`} />
+          <FetchSpellLevels url={`${props.url}${i}`} name={`Level: ${i}`} addSpell={props.addSpell}/>
         </ListItem>
       ))}
     </List>
@@ -213,7 +220,10 @@ function FetchSpellLevels(props) {
           <List>
             {query.map((i) => (
               <ListItem button key={`${i.index}`}>
-                <ListItemText primary={`${i.name}`} />
+                <ListItemText primary={`${i.name}`} onClick={(event) => 
+                  {event.stopPropagation()
+                  props.addSpell(`${i.name}`)
+                  }}/>
               </ListItem>
             ))}
           </List>
@@ -229,6 +239,16 @@ function Notes(props) {
   const [page, setPage] = useState(0);
   const [weaponDialogOpen, setWeaponDialogOpen] = useState(false);
   const [spellDialogOpen, setSpellDialogOpen] = useState(false);
+  const [spellList, setSpellList] = useState([])
+  const [equipmentList, setEquipmentList] = useState([])
+
+  const addSpell = (spellName) => {
+    setSpellList(spellList => {return [...spellList, spellName]})
+  }
+
+  const addEquipment = (equipmentName) => {
+    setEquipmentList(equipmentList => {return [...equipmentList, equipmentName]})
+  }
 
   const handleChange = (event, newValue) => {
     setPage(newValue);
@@ -259,16 +279,28 @@ function Notes(props) {
           </Tabs>
           <TabPanel value={page} index={0}></TabPanel>
           <TabPanel value={page} index={1}>
-            <Typography variant="h2"> Equipment</Typography>
             <Button variant="contained" onClick={handleWeaponDialogOpen}>
               Add Equipment
             </Button>
+            <List className={classes.list}>
+              {equipmentList.map((i) => (
+                <ListItem key={i}>
+                  <ListItemText primary={i} />
+                </ListItem>
+              ))}
+            </List>
           </TabPanel>
           <TabPanel value={page} index={2}>
-            <Typography variant="h2"> Spells </Typography>
             <Button variant="contained" onClick={handleSpellDialogOpen}>
               Add Spells
             </Button>
+            <List className={classes.list}>
+              {spellList.map((i) => (
+                <ListItem key={i}>
+                  <ListItemText primary={i} />
+                </ListItem>
+              ))}
+            </List>
           </TabPanel>
           <TabPanel value={page} index={3}>
             <TextField
@@ -287,12 +319,12 @@ function Notes(props) {
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
       <Dialog open={weaponDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
-        <FetchCategories url="https://www.dnd5eapi.co/api/equipment-categories" />
+        <FetchCategories url="https://www.dnd5eapi.co/api/equipment-categories" addEquipment={addEquipment}/>
       </Dialog>
       <Dialog open={spellDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Spells</DialogTitle>
 
-        <FetchSpells url="https://www.dnd5eapi.co/api/spells?level=" />
+        <FetchSpells url="https://www.dnd5eapi.co/api/spells?level=" addSpell={addSpell}/>
       </Dialog>
     </Grid>
   );

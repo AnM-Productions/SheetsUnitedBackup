@@ -61,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     alighItems: "center",
     justify: "center",
     flexWrap: "nowrap",
-    height: "1420px",
+    height: "60em",
     margin: "0px",
   },
   card: {
