@@ -219,7 +219,7 @@ export default function App() {
   const handleSave = () => {
     /* First I am saving the dumb way. I'd like to just exapand the values obj, but
      * I don't quite know how... */
-    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=NYowTCZt7u9KPp3kuc3u8dU6aLwff7YTUcazag4Tu2g00FSrE3rTFw==`;
+    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${REACT_APP_POST_CHAR_KEY}`;
     let result = "";
     async function postChar() {
       await axios
@@ -274,7 +274,7 @@ export default function App() {
     async function test() {
       let name = "Andrew";
       let charName = "Character1";
-      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=jQTZRfjxnfekLMXIWpY68aovK9czJU9NU/WeWRq19bTtkKSIq4fRDQ==&user=${name}&id=${charName}`;
+      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${REACT_APP_GET_CHAR_KEY}&user=${name}&id=${charName}`;
       let result = "";
       await axios
         .get(url)
