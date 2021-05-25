@@ -38,8 +38,11 @@ const styles = {
   },
   list: {
     maxHeight: "260px",
-    overflow: "auto"
-  }
+    overflow: "auto",
+  },
+  listItem: {
+    width: "100%",
+  },
 };
 
 function TabPanel(props) {
@@ -116,10 +119,13 @@ function FetchData(props) {
           <List>
             {query2.map((i) => (
               <ListItem button key={`${i.index}`}>
-                <ListItemText primary={`${i.name}`} onClick={(event) => 
-                  {event.stopPropagation()
-                  props.addEquipment(`${i.name}`)
-                  }}/>
+                <ListItemText
+                  primary={`${i.name}`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    props.addEquipment(`${i.name}`);
+                  }}
+                />
               </ListItem>
             ))}
           </List>
@@ -151,11 +157,19 @@ function FetchCategories(props) {
     <List>
       {query.map((i) => (
         <ListItem button key={`${i.index}`}>
-          <FetchData url={`${props.url}/${i.index}`} name={i.name} addEquipment={props.addEquipment}/>
+          <FetchData
+            url={`${props.url}/${i.index}`}
+            name={i.name}
+            addEquipment={props.addEquipment}
+          />
         </ListItem>
       ))}
     </List>
   );
+}
+
+function FetchSpellInfo(props) {
+  const [query, setQuery] = useState([]);
 }
 
 // Spells are organized differently than equipment and must be search by specfic level.
@@ -169,7 +183,11 @@ function FetchSpells(props) {
     <List>
       {levels.map((i) => (
         <ListItem button key={`spells-level-${i}`}>
-          <FetchSpellLevels url={`${props.url}${i}`} name={`Level: ${i}`} addSpell={props.addSpell}/>
+          <FetchSpellLevels
+            url={`${props.url}${i}`}
+            name={`Level: ${i}`}
+            addSpell={props.addSpell}
+          />
         </ListItem>
       ))}
     </List>
@@ -220,10 +238,13 @@ function FetchSpellLevels(props) {
           <List>
             {query.map((i) => (
               <ListItem button key={`${i.index}`}>
-                <ListItemText primary={`${i.name}`} onClick={(event) => 
-                  {event.stopPropagation()
-                  props.addSpell(`${i.name}`)
-                  }}/>
+                <ListItemText
+                  primary={`${i.name}`}
+                  onClick={(event) => {
+                    event.stopPropagation();
+                    props.addSpell(`${i.name}`);
+                  }}
+                />
               </ListItem>
             ))}
           </List>
@@ -239,16 +260,22 @@ function Notes(props) {
   const [page, setPage] = useState(0);
   const [weaponDialogOpen, setWeaponDialogOpen] = useState(false);
   const [spellDialogOpen, setSpellDialogOpen] = useState(false);
-  const [spellList, setSpellList] = useState([])
-  const [equipmentList, setEquipmentList] = useState([])
+  const [spellInfoOpen, setSpellInfoOpen] = useState(false);
+  const [spellList, setSpellList] = useState([]);
+  const [equipmentList, setEquipmentList] = useState([]);
+  const [curSpell, setCurSpell] = useState("");
 
   const addSpell = (spellName) => {
-    setSpellList(spellList => {return [...spellList, spellName]})
-  }
+    setSpellList((spellList) => {
+      return [...spellList, spellName];
+    });
+  };
 
   const addEquipment = (equipmentName) => {
-    setEquipmentList(equipmentList => {return [...equipmentList, equipmentName]})
-  }
+    setEquipmentList((equipmentList) => {
+      return [...equipmentList, equipmentName];
+    });
+  };
 
   const handleChange = (event, newValue) => {
     setPage(newValue);
@@ -264,6 +291,16 @@ function Notes(props) {
   const handleDialogClose = () => {
     setWeaponDialogOpen(false);
     setSpellDialogOpen(false);
+    setSpellInfoOpen(false);
+  };
+  const handleSpellInfoOpen = (event) => {
+    setSpellInfoOpen((spellInfoOpen) => !spellInfoOpen);
+    // console.log(event);
+    let spell = event.target.textContent;
+    spell = spell.toLowerCase();
+    spell = spell.replaceAll(" ", "-");
+    setCurSpell(spell);
+    console.log(curSpell);
   };
 
   /* Here is where we fetch API data for displaying lists of equip/weapons/etc */
@@ -296,8 +333,8 @@ function Notes(props) {
             </Button>
             <List className={classes.list}>
               {spellList.map((i) => (
-                <ListItem key={i}>
-                  <ListItemText primary={i} />
+                <ListItem button className={classes.listItem} key={i}>
+                  <ListItemText primary={i} onClick={handleSpellInfoOpen} />
                 </ListItem>
               ))}
             </List>
@@ -319,12 +356,27 @@ function Notes(props) {
       {/* Once this is working, I'd like to add a dialog box that pops up for more entry */}
       <Dialog open={weaponDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Equipment</DialogTitle>
-        <FetchCategories url="https://www.dnd5eapi.co/api/equipment-categories" addEquipment={addEquipment}/>
+        <FetchCategories
+          url="https://www.dnd5eapi.co/api/equipment-categories"
+          addEquipment={addEquipment}
+        />
       </Dialog>
       <Dialog open={spellDialogOpen} onClose={handleDialogClose}>
         <DialogTitle className={classes.title}>Add Spells</DialogTitle>
 
-        <FetchSpells url="https://www.dnd5eapi.co/api/spells?level=" addSpell={addSpell}/>
+        <FetchSpells
+          url="https://www.dnd5eapi.co/api/spells?level="
+          addSpell={addSpell}
+        />
+      </Dialog>
+      <Dialog open={spellInfoOpen} onClose={handleDialogClose}>
+        <DialogTitle Title className={classes.title}>
+          TEMP: Spell Information
+        </DialogTitle>
+        <Box>
+          Here will go a fetch call to the dnd api for a specific spell when I
+          write it.
+        </Box>
       </Dialog>
     </Grid>
   );
