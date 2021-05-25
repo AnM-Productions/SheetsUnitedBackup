@@ -23,7 +23,8 @@ import Login from "./Login";
 import axios from "axios";
 import Details from "./Details";
 
-const { REACT_APP_GET_CHAR_KEY, REACT_APP_POST_CHAR_KEY } = process.env;
+const post_char_key = process.env.REACT_APP_POST_CHAR_KEY;
+const get_char_key = process.env.REACT_APP_GET_CHAR_KEY;
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -218,7 +219,7 @@ export default function App() {
   const handleSave = () => {
     /* First I am saving the dumb way. I'd like to just exapand the values obj, but
      * I don't quite know how... */
-    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${REACT_APP_POST_CHAR_KEY}`;
+    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${post_char_key}`;
     var result = "";
 
     async function postChar() {
@@ -244,7 +245,7 @@ export default function App() {
     async function test() {
       let name = "Andrew";
       let charName = "Character1";
-      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${REACT_APP_GET_CHAR_KEY}&user=${name}&id=${charName}`;
+      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}&id=${charName}`;
       let result = "";
       await axios
         .get(url)
