@@ -13,7 +13,7 @@ import {
   Collapse,
 } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
-import { ArrowBack, LibraryBooks } from "@material-ui/icons";
+import { ArrowBack, LibraryBooks, ViewArray } from "@material-ui/icons";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -193,7 +193,6 @@ export default function App() {
   };
 
   const swapDetails = () => {
-    console.log(details);
     setDetails((prev) => !prev);
   };
 
@@ -220,46 +219,17 @@ export default function App() {
     /* First I am saving the dumb way. I'd like to just exapand the values obj, but
      * I don't quite know how... */
     var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${REACT_APP_POST_CHAR_KEY}`;
-    let result = "";
+    var result = "";
+
     async function postChar() {
+      const temp = { name: name };
+      const char = {};
+      // using assign to get 1 JSON object with every key/value from values concat'd with key/value from temp (just the name of the user)
+      // I don't want to use values b/c I don't want to override the state accidentally.
+      Object.assign(char, values, temp);
+      console.log(char);
       await axios
-        .post(make, {
-          username: name,
-          charName: values.charName,
-          race: values.race,
-          class: values.class,
-          level: values.level,
-          health: values.health,
-          ac: values.ac,
-          hit_die: values.hit_die,
-          initiative: values.initiative,
-          movement: values.movement,
-          proficiency: values.proficiency,
-          dexterity: values.dexterity,
-          intelligence: values.intelligence,
-          strength: values.strength,
-          wisdom: values.wisdom,
-          constitution: values.constitution,
-          charisma: values.charisma,
-          perception: values.perception,
-          survival: values.survival,
-          insight: values.insight,
-          medicine: values.medicine,
-          animalHandling: values.animalHandling,
-          arcana: values.arcana,
-          investigation: values.investigation,
-          religion: values.religion,
-          nature: values.nature,
-          history: values.history,
-          athletics: values.athletics,
-          acrobatics: values.acrobatics,
-          stealth: values.stealth,
-          sleightOfHand: values.sleightOfHand,
-          persuasion: values.persuasion,
-          intimidation: values.intimidation,
-          deception: values.deception,
-          performance: values.performance,
-        })
+        .post(make, char)
         .then((response) => {
           result = response.data.response;
           console.log(response);
