@@ -21,7 +21,6 @@ import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
 import Details from "./Details";
-import { setTokenSourceMapRange } from "typescript";
 
 const useStyles = makeStyles((theme) => ({
   page: {
