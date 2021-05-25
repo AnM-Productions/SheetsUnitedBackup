@@ -374,8 +374,8 @@ function Notes(props) {
           TEMP: Spell Information
         </DialogTitle>
         <Box>
-          Here will go a fetch call to the dnd api for a specific spell when I
-          write it.
+          Here will go a fetch call to the dnd api for {curSpell} when I write
+          it.
         </Box>
       </Dialog>
     </Grid>

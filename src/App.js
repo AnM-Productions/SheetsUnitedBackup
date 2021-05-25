@@ -20,7 +20,10 @@ import MenuIcon from "@material-ui/icons/Menu";
 import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
+import axios from "axios";
 import Details from "./Details";
+
+const { REACT_APP_GET_CHAR_KEY, REACT_APP_POST_CHAR_KEY } = process.env;
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -127,6 +130,10 @@ export default function App() {
   });
   const [checked, setChecked] = useState(true);
   const [values, setValues] = useState({
+    charName: "Name",
+    race: "Race",
+    class: "Class",
+    level: "0",
     health: "0",
     ac: "0",
     hit_die: "0",
@@ -210,9 +217,79 @@ export default function App() {
   };
 
   const handleSave = () => {
-    /* Pass up functions to character.js, corestats.js, details.js, stat.js
-     * They can save pass back their data, then it gets saved here?
-     * or they individually call save functions. */
+    /* First I am saving the dumb way. I'd like to just exapand the values obj, but
+     * I don't quite know how... */
+    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=NYowTCZt7u9KPp3kuc3u8dU6aLwff7YTUcazag4Tu2g00FSrE3rTFw==`;
+    let result = "";
+    async function postChar() {
+      await axios
+        .post(make, {
+          username: name,
+          charName: values.charName,
+          race: values.race,
+          class: values.class,
+          level: values.level,
+          health: values.health,
+          ac: values.ac,
+          hit_die: values.hit_die,
+          initiative: values.initiative,
+          movement: values.movement,
+          proficiency: values.proficiency,
+          dexterity: values.dexterity,
+          intelligence: values.intelligence,
+          strength: values.strength,
+          wisdom: values.wisdom,
+          constitution: values.constitution,
+          charisma: values.charisma,
+          perception: values.perception,
+          survival: values.survival,
+          insight: values.insight,
+          medicine: values.medicine,
+          animalHandling: values.animalHandling,
+          arcana: values.arcana,
+          investigation: values.investigation,
+          religion: values.religion,
+          nature: values.nature,
+          history: values.history,
+          athletics: values.athletics,
+          acrobatics: values.acrobatics,
+          stealth: values.stealth,
+          sleightOfHand: values.sleightOfHand,
+          persuasion: values.persuasion,
+          intimidation: values.intimidation,
+          deception: values.deception,
+          performance: values.performance,
+        })
+        .then((response) => {
+          result = response.data.response;
+          console.log(response);
+        })
+        .catch((error) => {
+          result = error;
+          console.log(`error: ${error}`);
+        });
+      return result;
+    }
+    // Keeping here for later.
+    async function test() {
+      let name = "Andrew";
+      let charName = "Character1";
+      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=jQTZRfjxnfekLMXIWpY68aovK9czJU9NU/WeWRq19bTtkKSIq4fRDQ==&user=${name}&id=${charName}`;
+      let result = "";
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log(response);
+          result = response;
+        })
+        .catch((error) => {
+          console.log(error);
+          result = error;
+        });
+      return result;
+    }
+    result = postChar();
+    console.log(result);
     console.log("Saved");
   };
 

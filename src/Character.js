@@ -82,7 +82,10 @@ function Character(props) {
     <Grid container className={classes.page} spacing={1}>
       <Grid item xs={12} className={classes.topRow}>
         <Paper className={classes.card}>
-          <InfoBar></InfoBar>
+          <InfoBar
+            values={props.values}
+            handleChange={props.handleChange}
+          ></InfoBar>
         </Paper>
       </Grid>
       <Grid container xs={12} className={classes.gridRow} spacing={1}>

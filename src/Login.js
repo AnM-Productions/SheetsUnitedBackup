@@ -88,6 +88,7 @@ function Login(props) {
         setCollapsed(0);
         props.fadeLogin();
         props.changeName(username);
+        console.log(response);
       })
       .catch((error) => {
         setCollapsed(1);
@@ -137,6 +138,7 @@ function Login(props) {
       return result;
     }
     var result = post();
+    console.log(result);
   };
 
   const { classes } = props;
