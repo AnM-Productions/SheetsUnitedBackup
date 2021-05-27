@@ -33,12 +33,12 @@ const styles = {
 function InfoBar(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
-  const [info, setInfo] = useState({
-    name: "Name",
-    race: "Race",
-    class: "Class",
-    level: "0",
-  });
+  // const [info, setInfo] = useState({
+  //   name: props.charName,
+  //   race: props.race,
+  //   class: props.class,
+  //   level: props.level,
+  // });
 
   const handleClose = () => {
     setOpen(false);
@@ -48,9 +48,9 @@ function InfoBar(props) {
     setOpen(true);
   };
 
-  const handleChange = (props) => (event) => {
-    setInfo({ ...info, [props]: event.target.value });
-  };
+  // const handleChange = (props) => (event) => {
+  //   setInfo({ ...info, [props]: event.target.value });
+  // };
 
   return (
     <Grid container spacing={2}>
@@ -67,7 +67,7 @@ function InfoBar(props) {
               Name:
             </Box>
             <Box fontSize={24} fontWeight={600} lineHeight={2}>
-              {info.name}
+              {props.values.charName}
             </Box>
           </Typography>
         </Paper>
@@ -85,7 +85,7 @@ function InfoBar(props) {
               Race:
             </Box>
             <Box fontSize={24} fontWeight={600} lineHeight={2}>
-              {info.race}
+              {props.values.race}
             </Box>
           </Typography>
         </Paper>
@@ -103,7 +103,7 @@ function InfoBar(props) {
               Class:
             </Box>
             <Box fontSize={24} fontWeight={600} lineHeight={2}>
-              {info.class}
+              {props.values.class}
             </Box>
           </Typography>
         </Paper>
@@ -112,7 +112,7 @@ function InfoBar(props) {
         <Paper onClick={handleClickOpen} className={classes.paperStyle}>
           <Typography>
             <Box fontSize={24} fontWeight={600} lineHeight={3}>
-              Level {info.level}
+              Level {props.values.level}
             </Box>
           </Typography>
         </Paper>
@@ -121,21 +121,27 @@ function InfoBar(props) {
         <DialogTitle className={classes.title}>Set Character Info</DialogTitle>
         <Grid container className={classes.dialogContainer} spacing={0}>
           <Grid className={classes.field} item xs={6}>
-            <TextField label="Name" onChange={handleChange("name")}></TextField>
+            <TextField
+              label="Name"
+              onChange={props.handleChange("charName")}
+            ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
-            <TextField label="Race" onChange={handleChange("race")}></TextField>
+            <TextField
+              label="Race"
+              onChange={props.handleChange("race")}
+            ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
             <TextField
               label="Class"
-              onChange={handleChange("class")}
+              onChange={props.handleChange("class")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
             <TextField
               label="Level"
-              onChange={handleChange("level")}
+              onChange={props.handleChange("level")}
             ></TextField>
           </Grid>
         </Grid>

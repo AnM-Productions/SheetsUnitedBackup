@@ -13,14 +13,18 @@ import {
   Collapse,
 } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
-import { ArrowBack, LibraryBooks } from "@material-ui/icons";
+import { ArrowBack, LibraryBooks, ViewArray } from "@material-ui/icons";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import MenuIcon from "@material-ui/icons/Menu";
 import { Fade } from "@material-ui/core";
 import Character from "./Character";
 import Login from "./Login";
+import axios from "axios";
 import Details from "./Details";
+
+const post_char_key = process.env.REACT_APP_POST_CHAR_KEY;
+const get_char_key = process.env.REACT_APP_GET_CHAR_KEY;
 
 const useStyles = makeStyles((theme) => ({
   page: {
@@ -127,6 +131,10 @@ export default function App() {
   });
   const [checked, setChecked] = useState(true);
   const [values, setValues] = useState({
+    charName: "Name",
+    race: "Race",
+    class: "Class",
+    level: "0",
     health: "0",
     ac: "0",
     hit_die: "0",
@@ -186,7 +194,6 @@ export default function App() {
   };
 
   const swapDetails = () => {
-    console.log(details);
     setDetails((prev) => !prev);
   };
 
@@ -210,9 +217,50 @@ export default function App() {
   };
 
   const handleSave = () => {
-    /* Pass up functions to character.js, corestats.js, details.js, stat.js
-     * They can save pass back their data, then it gets saved here?
-     * or they individually call save functions. */
+    /* First I am saving the dumb way. I'd like to just exapand the values obj, but
+     * I don't quite know how... */
+    var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${post_char_key}`;
+    var result = "";
+
+    async function postChar() {
+      const temp = { name: name };
+      const char = {};
+      // using assign to get 1 JSON object with every key/value from values concat'd with key/value from temp (just the name of the user)
+      // I don't want to use values b/c I don't want to override the state accidentally.
+      Object.assign(char, values, temp);
+      console.log(char);
+      await axios
+        .post(make, char)
+        .then((response) => {
+          result = response.data.response;
+          console.log(response);
+        })
+        .catch((error) => {
+          result = error;
+          console.log(`error: ${error}`);
+        });
+      return result;
+    }
+    // Keeping here for later.
+    async function test() {
+      let name = "Andrew";
+      let charName = "Character1";
+      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}&id=${charName}`;
+      let result = "";
+      await axios
+        .get(url)
+        .then((response) => {
+          console.log(response);
+          result = response;
+        })
+        .catch((error) => {
+          console.log(error);
+          result = error;
+        });
+      return result;
+    }
+    result = postChar();
+    console.log(result);
     console.log("Saved");
   };
 
