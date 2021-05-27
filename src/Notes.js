@@ -6,15 +6,16 @@ import {
   Tabs,
   Tab,
   TextField,
-  Typography,
   Button,
   List,
   ListItem,
   ListItemText,
   Menu,
   MenuItem,
+  IconButton
 } from "@material-ui/core";
 import { withStyles } from "@material-ui/core/styles";
+import RemoveIcon from '@material-ui/icons/Remove';
 import axios from "axios";
 
 const styles = {
@@ -168,9 +169,11 @@ function FetchCategories(props) {
   );
 }
 
+
 function FetchSpellInfo(props) {
   const [query, setQuery] = useState([]);
 }
+
 
 // Spells are organized differently than equipment and must be search by specfic level.
 // This function creates all the buttons that call queries for specific levels.
@@ -271,11 +274,25 @@ function Notes(props) {
     });
   };
 
+  const removeSpell = (event) => {
+    console.log(event.currentTarget.getAttribute("data-value"))
+    setSpellList((spellList) => {
+      return spellList.filter(spell => spell != event.currentTarget.getAttribute("data-value"))
+    })
+  }
+
   const addEquipment = (equipmentName) => {
     setEquipmentList((equipmentList) => {
       return [...equipmentList, equipmentName];
     });
   };
+
+  const removeEquipment = (event) => {
+    console.log(event.currentTarget.getAttribute("data-value"))
+    setEquipmentList((equipmentList) => {
+      return equipmentList.filter(equipment => equipment != event.currentTarget.getAttribute("data-value"))
+    })
+  }
 
   const handleChange = (event, newValue) => {
     setPage(newValue);
@@ -323,6 +340,9 @@ function Notes(props) {
               {equipmentList.map((i) => (
                 <ListItem key={i}>
                   <ListItemText primary={i} />
+                  <IconButton variant="contained" onClick={removeEquipment} data-value={i}>
+                    <RemoveIcon/>
+                  </IconButton>
                 </ListItem>
               ))}
             </List>
@@ -335,6 +355,9 @@ function Notes(props) {
               {spellList.map((i) => (
                 <ListItem button className={classes.listItem} key={i}>
                   <ListItemText primary={i} onClick={handleSpellInfoOpen} />
+                  <IconButton variant="contained" onClick={removeSpell} data-value={i}>
+                    <RemoveIcon/>
+                  </IconButton>
                 </ListItem>
               ))}
             </List>
