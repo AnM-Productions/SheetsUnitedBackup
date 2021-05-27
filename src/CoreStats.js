@@ -31,7 +31,7 @@ const styles = {
     padding: "5px",
   },
   gridHolder: {
-    alignContent: "center",
+    justifyContent: "center",
     alignItems: "center",
   },
 };

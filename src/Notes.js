@@ -275,7 +275,6 @@ function Notes(props) {
   };
 
   const removeSpell = (event) => {
-    console.log(event.currentTarget.getAttribute("data-value"))
     setSpellList((spellList) => {
       return spellList.filter(spell => spell != event.currentTarget.getAttribute("data-value"))
     })
@@ -288,7 +287,6 @@ function Notes(props) {
   };
 
   const removeEquipment = (event) => {
-    console.log(event.currentTarget.getAttribute("data-value"))
     setEquipmentList((equipmentList) => {
       return equipmentList.filter(equipment => equipment != event.currentTarget.getAttribute("data-value"))
     })
