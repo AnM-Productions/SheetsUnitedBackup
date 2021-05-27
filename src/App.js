@@ -60,12 +60,9 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "center",
   },
   back: {
-    backgroundColor: "#565656",
     alighItems: "center",
     justify: "center",
     flexWrap: "nowrap",
-    height: "60em",
-    margin: "0px",
   },
   card: {
     backgroundColor: "#d7cec7",
