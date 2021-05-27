@@ -42,7 +42,6 @@ function CoreStats(props) {
 
   const handleClose = () => {
     setOpen(false);
-    console.log(props);
   };
 
   const handleClickOpen = () => {

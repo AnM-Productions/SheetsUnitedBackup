@@ -181,7 +181,6 @@ export default function App() {
     setValues({ ...values, [props]: event.target.value });
     let mod = Math.floor((event.target.value - 10) / 2);
     if (mod >= 0) mod = `+${mod}`;
-    console.log(mod);
     setMods({ ...mods, [props]: mod });
   };
 
@@ -217,16 +216,11 @@ export default function App() {
   };
 
   const handleSave = () => {
-    /* First I am saving the dumb way. I'd like to just exapand the values obj, but
-     * I don't quite know how... */
     var make = `https://postaccount.azurewebsites.net/api/postCharacter?code=${post_char_key}`;
     var result = "";
-
     async function postChar() {
       const temp = { name: name };
       const char = {};
-      // using assign to get 1 JSON object with every key/value from values concat'd with key/value from temp (just the name of the user)
-      // I don't want to use values b/c I don't want to override the state accidentally.
       Object.assign(char, values, temp);
       console.log(char);
       await axios
@@ -241,51 +235,24 @@ export default function App() {
         });
       return result;
     }
-    // Keeping here for later.
-    async function test() {
-      let name = "Andrew";
-      let charName = "Character1";
-      let url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}&id=${charName}`;
-      let result = "";
-      await axios
-        .get(url)
-        .then((response) => {
-          console.log(response);
-          result = response;
-        })
-        .catch((error) => {
-          console.log(error);
-          result = error;
-        });
-      return result;
-    }
     result = postChar();
-    console.log(result);
-    console.log("Saved");
   };
 
   const handleSingleChange = (props) => (event) => {
     if (event.target.checked) {
       setValues({ ...values, [props]: 1 });
       setDisabled({ ...disabled, [props]: false });
-      console.log(`Single change called. Value of disabled ${disabled}`);
     } else {
       setValues({ ...values, [props]: 0 });
       setChecked(false);
       setDisabled({ ...disabled, [props]: true });
-      console.log(
-        `single changed called, box unchecked, value of disabled ${disabled}`
-      );
     }
-    console.log(checked);
   };
   const handleDoubleChange = (props) => (event) => {
     if (event.target.checked) {
       setValues({ ...values, [props]: 2 });
-      console.log(props);
     } else {
       setValues({ ...values, [props]: 1 });
-      console.log(props);
     }
   };
   return (

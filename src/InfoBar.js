@@ -33,12 +33,6 @@ const styles = {
 function InfoBar(props) {
   const { classes } = props;
   const [open, setOpen] = useState(false);
-  // const [info, setInfo] = useState({
-  //   name: props.charName,
-  //   race: props.race,
-  //   class: props.class,
-  //   level: props.level,
-  // });
 
   const handleClose = () => {
     setOpen(false);
@@ -47,10 +41,6 @@ function InfoBar(props) {
   const handleClickOpen = () => {
     setOpen(true);
   };
-
-  // const handleChange = (props) => (event) => {
-  //   setInfo({ ...info, [props]: event.target.value });
-  // };
 
   return (
     <Grid container spacing={2}>
