@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -88,19 +88,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GetChars() {
-  const classes = useStyles();
-  // get characters of username from API, to be implemented.
-  // Return map list of all characters names. On click loads that name (later)
-  // ADD username arguments
-  const chars = ["Fighter", "Rogue", "Ranger", "Wizard"];
-  return chars.map((i) => (
-    <ListItem button className={classes.nested} paddingLeft="5px" key={`${i}`}>
-      <ListItemText primary={`${i}`} />
-    </ListItem>
-  ));
-}
-
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -109,6 +96,7 @@ export default function App() {
   const [login, setLogin] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [options, setOptions] = useState(false);
+  const [chars, setChars] = useState([]);
   const [disabled, setDisabled] = useState({
     perception: true,
     survival: true,
@@ -212,7 +200,16 @@ export default function App() {
     setOptions((options) => !options);
   };
   const changeName = (props) => {
+    // Change name is called on login. This will also call getChars so we only perform the get once.
     setName(props);
+    // Fetch all character names using getChars, handleChars is called inside getChars
+    getChars(name);
+  };
+
+  const handleChars = (props) => {
+    setChars(props);
+    console.log(`setChars called. chars is now:`);
+    console.log(chars);
   };
 
   const handleSave = () => {
@@ -237,6 +234,54 @@ export default function App() {
     }
     result = postChar();
   };
+
+  function getChars(name) {
+    // get characters of username from API, to be implemented.
+    // Return map list of all characters names. On click loads that name (later)
+    // ADD username arguments
+    // const chars = ["Fighter", "Rogue", "Ranger", "Wizard"];
+    const url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}`;
+    async function fetchChars() {
+      await axios
+        .get(url)
+        .then((response) => {
+          var temp = response.data.value.map((a) => a.charName);
+          console.log(temp);
+          handleChars(temp);
+          return response.data.value;
+        })
+        .catch((temp) => {
+          console.log(`Error getting data from ${url}`);
+          return [];
+        });
+    }
+    var query = fetchChars();
+    console.log(`${name} logged in`);
+    // console.log(query);
+    return query;
+  }
+  function displayChars() {
+    return (
+      <List component="div" disablePadding>
+        {chars.map((i) => (
+          <ListItem
+            button
+            className={classes.nested}
+            paddingLeft="5px"
+            key={`${i}`}
+          >
+            <ListItemText onClick={loadChar(i)} primary={`${i}`} />
+          </ListItem>
+        ))}
+      </List>
+    );
+  }
+  function loadChar(name) {
+    console.log(`Loading ${name}`);
+  }
+  // const handleLoad = () => {
+  //   var url = "https://postaccount.azurewebsites.net/api/getCharacter?code=jQTZRfjxnfekLMXIWpY68aovK9czJU9NU/WeWRq19bTtkKSIq4fRDQ=="
+  // }
 
   const handleSingleChange = (props) => (event) => {
     if (event.target.checked) {
@@ -305,7 +350,22 @@ export default function App() {
                   <ListItem>
                     <Collapse in={options} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {GetChars()}
+                        {chars.map((i) => (
+                          <ListItem
+                            button
+                            className={classes.nested}
+                            paddingLeft="5px"
+                            key={`${i}`}
+                          >
+                            <ListItemText
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                loadChar(i);
+                              }}
+                              primary={`${i}`}
+                            />
+                          </ListItem>
+                        ))}
                       </List>
                     </Collapse>
                   </ListItem>
