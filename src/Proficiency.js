@@ -90,7 +90,7 @@ function Proficiency(props) {
   function displaySkill(modifier, proficiency, profBonus) {
     let total = parseInt(modifier) + proficiency * profBonus;
     if (total >= 0) return `+${total}`;
-    else return `-${total}`;
+    else return `${total}`;
   }
   return (
     <Grid container spacing={0}>
