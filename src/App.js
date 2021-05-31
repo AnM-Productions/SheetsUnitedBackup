@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Grid } from "@material-ui/core";
 import { AppBar } from "@material-ui/core";
 import { Typography } from "@material-ui/core";
@@ -13,7 +13,12 @@ import {
   Collapse,
 } from "@material-ui/core";
 import { IconButton } from "@material-ui/core";
-import { ArrowBack, LibraryBooks, ViewArray } from "@material-ui/icons";
+import {
+  ArrowBack,
+  KeyboardReturnOutlined,
+  LibraryBooks,
+  ViewArray,
+} from "@material-ui/icons";
 import ExpandLess from "@material-ui/icons/ExpandLess";
 import ExpandMore from "@material-ui/icons/ExpandMore";
 import MenuIcon from "@material-ui/icons/Menu";
@@ -85,19 +90,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-function GetChars() {
-  const classes = useStyles();
-  // get characters of username from API, to be implemented.
-  // Return map list of all characters names. On click loads that name (later)
-  // ADD username arguments
-  const chars = ["Fighter", "Rogue", "Ranger", "Wizard"];
-  return chars.map((i) => (
-    <ListItem button className={classes.nested} paddingLeft="5px" key={`${i}`}>
-      <ListItemText primary={`${i}`} />
-    </ListItem>
-  ));
-}
-
 export default function App() {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
@@ -106,6 +98,7 @@ export default function App() {
   const [login, setLogin] = useState(true);
   const [drawerOpen, setDrawerOpen] = useState(false);
   const [options, setOptions] = useState(false);
+  const [chars, setChars] = useState([]);
   const [disabled, setDisabled] = useState({
     perception: true,
     survival: true,
@@ -176,10 +169,32 @@ export default function App() {
 
   const handleStatChange = (props) => (event) => {
     setValues({ ...values, [props]: event.target.value });
-    let mod = Math.floor((event.target.value - 10) / 2);
-    if (mod >= 0) mod = `+${mod}`;
+    let mod = calcMod(event.target.value);
     setMods({ ...mods, [props]: mod });
+    console.log(`handle stat change. props: ${props} mod: ${mod}`);
   };
+
+  function calcMod(num) {
+    let mod = Math.floor((num - 10) / 2);
+    if (mod >= 0) mod = `+${mod}`;
+    return mod;
+  }
+
+  function updateAllMods() {
+    // Kind of a heavy handed way to update all modifiers after a char is loaded.
+    let strMod = calcMod(values.strength);
+    let dexMod = calcMod(values.dexterity);
+    let conMod = calcMod(values.constitution);
+    let intMod = calcMod(values.intelligence);
+    let wisMod = calcMod(values.wisdom);
+    let charMod = calcMod(values.charisma);
+    setMods({ strength: strMod });
+    setMods({ dexterity: dexMod });
+    setMods({ constitution: conMod });
+    setMods({ ...mods, intelligence: intMod });
+    setMods({ ...mods, wisdom: wisMod });
+    setMods({ ...mods, charisma: charMod });
+  }
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -207,9 +222,19 @@ export default function App() {
 
   const handleOptions = () => {
     setOptions((options) => !options);
+    getChars(name);
   };
   const changeName = (props) => {
+    // Change name is called on login. This will also call getChars so we only perform the get once.
     setName(props);
+    // Fetch all character names using getChars, handleChars is called inside getChars
+    // getChars(props)
+  };
+
+  const handleChars = (props) => {
+    setChars(props);
+    console.log(`setChars called. chars is now:`);
+    console.log(chars);
   };
 
   const handleSave = () => {
@@ -234,6 +259,62 @@ export default function App() {
     }
     result = postChar();
   };
+
+  function getChars(name) {
+    // get characters of username from API, to be implemented.
+    // Return map list of all characters names. On click loads that name (later)
+    // ADD username arguments
+    // const chars = ["Fighter", "Rogue", "Ranger", "Wizard"];
+    console.log(`Getting characters from user ${name}`);
+    const url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}`;
+    async function fetchChars() {
+      await axios
+        .get(url)
+        .then((response) => {
+          const temp = response.data.value.map((a) => a.charName);
+          handleChars(temp);
+          return response.data.value;
+        })
+        .catch((temp) => {
+          console.log(`Error getting data from database`);
+          return [];
+        });
+    }
+    var query = fetchChars();
+    return query;
+  }
+
+  function loadChar(charName) {
+    console.log(`Loading ${charName}`);
+    const url = `https://postaccount.azurewebsites.net/api/getCharacter?code=${get_char_key}&user=${name}&id=${charName}`;
+    async function fetchChar() {
+      await axios
+        .get(url)
+        .then((response) => {
+          var temp = response.data;
+          // Deleting some of the data that gets returned but isn't needed
+          delete temp.PartitionKey;
+          delete temp.RowKey;
+          delete temp.Timestamp;
+          delete temp.name;
+          // delete temp.name;
+          console.log(temp);
+          // save rest of values to char sheet
+          Object.assign(values, temp);
+          console.log(values);
+          return;
+        })
+        .catch((error) => {
+          console.log(`Error: ${error}`);
+          return;
+        });
+    }
+    fetchChar();
+    updateAllMods();
+  }
+  // const handleLoad = () => {
+  //   var url = "https://postaccount.azurewebsites.net/api/getCharacter?code=jQTZRfjxnfekLMXIWpY68aovK9czJU9NU/WeWRq19bTtkKSIq4fRDQ=="
+  // }
 
   const handleSingleChange = (props) => (event) => {
     if (event.target.checked) {
@@ -301,7 +382,23 @@ export default function App() {
                   <ListItem>
                     <Collapse in={options} timeout="auto" unmountOnExit>
                       <List component="div" disablePadding>
-                        {GetChars()}
+                        {/* Displaying Characters */}
+                        {chars.map((i) => (
+                          <ListItem
+                            button
+                            className={classes.nested}
+                            paddingLeft="5px"
+                            key={`${i}`}
+                          >
+                            <ListItemText
+                              onClick={(event) => {
+                                event.stopPropagation();
+                                loadChar(i);
+                              }}
+                              primary={`${i}`}
+                            />
+                          </ListItem>
+                        ))}
                       </List>
                     </Collapse>
                   </ListItem>
