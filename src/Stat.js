@@ -90,7 +90,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.dexterity}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.dexterity}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton
@@ -164,7 +164,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.intelligence}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.intelligence}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton
@@ -198,7 +198,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.strength}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.strength}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton
@@ -229,7 +229,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.wisdom}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.wisdom}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton
@@ -260,7 +260,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.constitution}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.constitution}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton
@@ -294,7 +294,7 @@ function Stat(props) {
                 {modOrModifier()}: {props.mods.charisma}
               </Grid>
               <Grid className={classes.field} item xs={6}>
-                Save: 0
+                Save: {props.mods.charisma}
               </Grid>
               <Grid className={classes.field} item xs={6}>
                 <IconButton

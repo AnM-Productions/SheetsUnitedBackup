@@ -241,7 +241,6 @@ export default function App() {
       setDisabled({ ...disabled, [props]: false });
     } else {
       setValues({ ...values, [props]: 0 });
-      setChecked(false);
       setDisabled({ ...disabled, [props]: true });
     }
   };
