@@ -184,20 +184,22 @@ export default function App() {
     return mod;
   }
 
-  function updateAllMods() {
+  function updateAllMods(props) {
     // Kind of a heavy handed way to update all modifiers after a char is loaded.
-    let strMod = calcMod(values.strength);
-    let dexMod = calcMod(values.dexterity);
-    let conMod = calcMod(values.constitution);
-    let intMod = calcMod(values.intelligence);
-    let wisMod = calcMod(values.wisdom);
-    let charMod = calcMod(values.charisma);
-    setMods({ strength: strMod });
-    setMods({ dexterity: dexMod });
-    setMods({ constitution: conMod });
-    setMods({ ...mods, intelligence: intMod });
-    setMods({ ...mods, wisdom: wisMod });
-    setMods({ ...mods, charisma: charMod });
+    let strMod = calcMod(props.strength);
+    let dexMod = calcMod(props.dexterity);
+    let conMod = calcMod(props.constitution);
+    let intMod = calcMod(props.intelligence);
+    let wisMod = calcMod(props.wisdom);
+    let charMod = calcMod(props.charisma);
+    setMods({
+      dexterity: dexMod,
+      intelligence: intMod,
+      strength: strMod,
+      wisdom: wisMod,
+      constitution: conMod,
+      charisma: charMod,
+    })
   }
 
   const handleClick = (event) => {
@@ -304,7 +306,11 @@ export default function App() {
           // delete temp.name;
           console.log(temp);
           // save rest of values to char sheet
-          Object.assign(values, temp);
+          setValues(temp)
+          updateAllMods(temp)
+          console.log(values)
+          
+          //Object.assign(values, temp);
           console.log(values);
           return;
         })
@@ -313,8 +319,7 @@ export default function App() {
           return;
         });
     }
-    fetchChar();
-    updateAllMods();
+    var result = fetchChar();
   }
   // const handleLoad = () => {
   //   var url = "https://postaccount.azurewebsites.net/api/getCharacter?code=jQTZRfjxnfekLMXIWpY68aovK9czJU9NU/WeWRq19bTtkKSIq4fRDQ=="
