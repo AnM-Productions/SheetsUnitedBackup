@@ -655,9 +655,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Perception"
+                      label="Perception Proficient"
                     />
                     <FormControlLabel
+                      label="Preception Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -678,9 +679,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Insight"
+                      label="Insight Proficient"
                     />
                     <FormControlLabel
+                      label="Insight Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -701,9 +703,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Survival"
+                      label="Survival Proficient"
                     />
                     <FormControlLabel
+                      label="Survival Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -724,9 +727,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Medicine"
+                      label="Medicine Proficient"
                     />
                     <FormControlLabel
+                      label="Medicine Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -747,9 +751,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Animal Handling"
+                      label="Animal Handling Proficient"
                     />
                     <FormControlLabel
+                      label="Animal Handling Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -773,9 +778,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Investigation"
+                      label="Investigation Proficient"
                     />
                     <FormControlLabel
+                      label="Investigation Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -796,9 +802,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Arcana"
+                      label="Arcana Proficient"
                     />
                     <FormControlLabel
+                      label="Arcana Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -819,9 +826,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="History"
+                      label="History Proficient"
                     />
                     <FormControlLabel
+                      label="History Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -842,9 +850,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Religion"
+                      label="Religion Proficient"
                     />
                     <FormControlLabel
+                      label="Religion Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -865,9 +874,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Nature"
+                      label="Nature Proficient"
                     />
                     <FormControlLabel
+                      label="Nature Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -895,9 +905,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Athletics"
+                      label="Athletics Proficient"
                     />
                     <FormControlLabel
+                      label="Athletics Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -921,9 +932,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Stealth"
+                      label="Stealth Proficient"
                     />
                     <FormControlLabel
+                      label="Stealth Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -945,9 +957,10 @@ function Proficiency(props) {
                           />
                         }
                         labelPlacement="start"
-                        label="Acrobatics"
+                        label="Acrobatics Proficient"
                       />
                       <FormControlLabel
+                        label="Acrobatics Expertise"
                         className={classes.checkbox2}
                         control={
                           <Checkbox
@@ -969,9 +982,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Sleight of Hand"
+                      label="Sleight of Hand Proficient"
                     />
                     <FormControlLabel
+                      label="Sleight of Hand Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -995,9 +1009,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Persuasion"
+                      label="Persuasion Proficient"
                     />
                     <FormControlLabel
+                      label="Persuasuion Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -1018,9 +1033,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Deception"
+                      label="Deception Proficient"
                     />
                     <FormControlLabel
+                      label="Deception Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -1041,9 +1057,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Intimidation"
+                      label="Intimidation Proficient"
                     />
                     <FormControlLabel
+                      label="Intimidation Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox
@@ -1064,9 +1081,10 @@ function Proficiency(props) {
                         />
                       }
                       labelPlacement="start"
-                      label="Performance"
+                      label="Performance Proficient"
                     />
                     <FormControlLabel
+                      label="Performance Expertise"
                       className={classes.checkbox2}
                       control={
                         <Checkbox

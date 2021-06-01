@@ -113,36 +113,42 @@ function Stat(props) {
           <Grid container className={classes.dialogContainer} spacing={0}>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="dexterity"
                 label="Dexterity"
                 onChange={props.handleStatChange("dexterity")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="intelligence"
                 label="Intelligence"
                 onChange={props.handleStatChange("intelligence")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="strength"
                 label="Strength"
                 onChange={props.handleStatChange("strength")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="wisdom"
                 label="Wisdom"
                 onChange={props.handleStatChange("wisdom")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="constitution"
                 label="Constitution"
                 onChange={props.handleStatChange("constitution")}
               ></TextField>
             </Grid>
             <Grid className={classes.field} item xs={6}>
               <TextField
+                id="charisma"
                 label="Charisma"
                 onChange={props.handleStatChange("charisma")}
               ></TextField>

@@ -125,36 +125,42 @@ function CoreStats(props) {
         <Grid container className={classes.dialogContainer} spacing={0}>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="health"
               label="Health"
               onChange={props.handleChange("health")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="ac"
               label="AC"
               onChange={props.handleChange("ac")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="hit die"
               label="Hit Die"
               onChange={props.handleChange("hit_die")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="initiative"
               label="Initiative"
               onChange={props.handleChange("initiative")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="movement"
               label="Movement"
               onChange={props.handleChange("movement")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={4}>
             <TextField
+              id="proficiency"
               label="Proficiency"
               onChange={props.handleChange("proficiency")}
             ></TextField>

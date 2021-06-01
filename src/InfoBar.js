@@ -112,24 +112,28 @@ function InfoBar(props) {
         <Grid container className={classes.dialogContainer} spacing={0}>
           <Grid className={classes.field} item xs={6}>
             <TextField
+              id="name"
               label="Name"
               onChange={props.handleChange("charName")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
             <TextField
+              id="race"
               label="Race"
               onChange={props.handleChange("race")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
             <TextField
+              id="class"
               label="Class"
               onChange={props.handleChange("class")}
             ></TextField>
           </Grid>
           <Grid className={classes.field} item xs={6}>
             <TextField
+              id="level"
               label="Level"
               onChange={props.handleChange("level")}
             ></TextField>

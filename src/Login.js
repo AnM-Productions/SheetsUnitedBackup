@@ -149,11 +149,13 @@ function Login(props) {
         <Grid item sm={5} xs={12} className={classes.loginItem}>
           <Typography variant="h5">Please enter your credentials</Typography>
           <TextField
+            id="username"
             label="username"
             className={classes.loginField}
             onChange={changeUsername}
           ></TextField>
           <TextField
+            id="password"
             label="password"
             className={classes.loginField}
             onChange={changePassword}
@@ -173,16 +175,19 @@ function Login(props) {
         <Grid item sm={5} xs={12} className={classes.loginItem}>
           <Typography variant="h5">Don't have an account yet?</Typography>
           <TextField
+            id="new username"
             label="new username"
             className={classes.loginField}
             onChange={changeUsername}
           ></TextField>
           <TextField
+            id="new password"
             label="new password"
             className={classes.loginField}
             onChange={changePassword}
           ></TextField>
           <TextField
+            id="confirm password"
             label="confirm password"
             className={classes.loginField}
             onChange={changeConfirm}

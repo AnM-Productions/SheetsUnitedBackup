@@ -80,6 +80,10 @@ const useStyles = makeStyles((theme) => ({
   },
   loginButton: {
     marginRight: "16px",
+    color: "white",
+  },
+  rightIcon: {
+    color: "white",
   },
   drawer: {
     width: 250,
@@ -341,6 +345,7 @@ export default function App() {
               variant="contained"
               onClick={fadeLogin}
               className={classes.loginButton}
+              aria-label="return to menu"
             >
               <ArrowBack />
             </IconButton>
@@ -349,10 +354,20 @@ export default function App() {
             </Typography>
           </div>
           <div class={classes.toolRight}>
-            <IconButton variant="contained" onClick={swapDetails}>
+            <IconButton
+              variant="contained"
+              onClick={swapDetails}
+              className={classes.rightIcon}
+              aria-label="details"
+            >
               <LibraryBooks />
             </IconButton>
-            <IconButton aria-label="menu" onClick={handleDrawerOpen}>
+            <IconButton
+              variant="contained"
+              aria-label="menu"
+              onClick={handleDrawerOpen}
+              className={classes.rightIcon}
+            >
               <MenuIcon />
             </IconButton>
             <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerOpen}>
